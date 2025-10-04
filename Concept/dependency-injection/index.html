@@ -1,0 +1,5181 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A lightweight Python framework for building intelligent agents and multi-agent workflows.">
+      
+      
+      
+        <link rel="canonical" href="https://iamsdt.github.io/pyagenity/Concept/dependency-injection/">
+      
+      
+        <link rel="prev" href="../Threadname/">
+      
+      
+        <link rel="next" href="../id_generator/">
+      
+      
+      <link rel="icon" href="../../None">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Dependency Injection in PyAgenity - PyAgenity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dependency-injection-in-pyagenity" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyAgenity" class="md-header__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyAgenity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dependency Injection in PyAgenity
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  PyAgenity
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Concept
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyAgenity" class="md-nav__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PyAgenity
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Concept
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concept
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks: Interception and Flow Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Commands: Combining State Updates with Control Flow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Threadname/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threadname
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Dependency Injection in PyAgenity
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dependency Injection in PyAgenity
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-dependency-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Dependency Injection?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenitys-di-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      PyAgenity's DI Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-injectable-objects-that-packed-with-pyagenity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Injectable Objects, that packed with PyAgenity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-container-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Container Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Container Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-container-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Container Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#injection-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Injection Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Injection Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-based-injection-with-inject" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type-Based Injection with Inject[]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-parameter-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Parameter Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-access-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Access Patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-lifecycles-and-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Lifecycles and Scopes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependency Lifecycles and Scopes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#singleton-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Singleton Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transient-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transient Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-scoping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Scoping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pyagenity-dependency-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common PyAgenity Dependency Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common PyAgenity Dependency Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#injecting-core-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Injecting Core Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-service-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Service Registration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Injection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#factory-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factory Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-implementation-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Implementation Patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-with-dependency-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing with Dependency Injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing with Dependency Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-specific-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test-Specific Overrides
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keep-dependencies-focused" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep Dependencies Focused
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-abstract-base-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Abstract Base Classes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-container-early" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize Container Early
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leverage-container-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leverage Container Debugging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-pyagenity-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with PyAgenity Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with PyAgenity Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prebuilt-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prebuilt Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#callback-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Callback Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publisher-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publisher Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#missing-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missing Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circular-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circular Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-resolution-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type Resolution Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#container-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Overhead
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publisher: Real-time Agent Observability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../context/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Context
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Context
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer: The Agent's Session Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Messages: The Lifeblood of Agent Communication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent State: The Mind of Your Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store: The Agent's Knowledge Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/Config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Patterns &amp; Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/control_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Flow &amp; Edges
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution &amp; Streaming Runtime
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/human-in-the-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human-in-the-Loop (HITL) &amp; Interrupts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nodes &amp; Return Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools &amp; Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Tutorial/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/long_term_memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Long-Term Memory with Mem0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan-Act-Reflect Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QdrantStore Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG (Retrieval-Augmented Generation) with PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Tutorial/react/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/react/01-basic-react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic React Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/react/02-dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Dependency Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/react/03-mcp-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Model Context Protocol (MCP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/react/04-streaming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Streaming Responses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/adapters/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Adapters
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Adapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/adapters/llm/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Llm
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_1" id="__nav_4_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Llm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/llm/base_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/llm/litellm_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Litellm converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/llm/model_response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/adapters/tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/tools/composio_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Composio adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/tools/langchain_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Langchain adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/checkpointer/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Checkpointer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/checkpointer/base_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/checkpointer/in_memory_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    In memory checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/checkpointer/pg_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pg checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/exceptions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Exceptions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exceptions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/graph_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/node_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/recursion_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recursion error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/storage_exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Storage exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/compiled_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Compiled graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Edge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/state_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    State graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/graph/tool_node/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tool node
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tool node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/deps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/executors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Executors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/graph/utils/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/handler_mixins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handler mixins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/invoke_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/invoke_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/stream_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/stream_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/stream_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/prebuilt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Prebuilt
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Prebuilt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/prebuilt/agent/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Agent
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5_1" id="__nav_4_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Agent
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/branch_join/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branch join
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/deep_research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deep research
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/guarded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guarded
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/map_reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map reduce
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan act reflect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/sequential/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sequential
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/supervisor_team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor team
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/swarm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Swarm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/publisher/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Publisher
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Publisher
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/base_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/console_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Console publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Events
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/kafka_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kafka publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/publish/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publish
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/rabbitmq_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rabbitmq publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/redis_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redis publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/state/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    State
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            State
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/state/agent_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/state/base_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base context
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/state/execution_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/state/message_context_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message context manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/store/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Store
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Store
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/base_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/mem0_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mem0 store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Qdrant store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/store_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/store/embedding/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Embedding
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_5" id="__nav_4_8_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            Embedding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/embedding/base_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/embedding/openai_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Openai embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/utils/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/background_task_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background task manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/callable_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callable utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/reducers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reducers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/thread_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/thread_name_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread name generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-dependency-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Dependency Injection?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenitys-di-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      PyAgenity's DI Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-injectable-objects-that-packed-with-pyagenity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Injectable Objects, that packed with PyAgenity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-container-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Container Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Container Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-container-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Container Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#injection-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Injection Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Injection Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-based-injection-with-inject" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type-Based Injection with Inject[]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-parameter-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Parameter Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-access-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Access Patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependency-lifecycles-and-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Lifecycles and Scopes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependency Lifecycles and Scopes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#singleton-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Singleton Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transient-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transient Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-scoping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Scoping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pyagenity-dependency-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common PyAgenity Dependency Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common PyAgenity Dependency Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#injecting-core-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Injecting Core Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-service-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Service Registration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Injection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#factory-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factory Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-implementation-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Implementation Patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-with-dependency-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing with Dependency Injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing with Dependency Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-specific-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test-Specific Overrides
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keep-dependencies-focused" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keep Dependencies Focused
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-abstract-base-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Abstract Base Classes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-container-early" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize Container Early
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leverage-container-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leverage Container Debugging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-pyagenity-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with PyAgenity Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with PyAgenity Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prebuilt-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prebuilt Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#callback-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Callback Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publisher-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publisher Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#missing-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missing Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circular-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Circular Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-resolution-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Type Resolution Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#container-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Overhead
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="dependency-injection-in-pyagenity">Dependency Injection in PyAgenity<a class="headerlink" href="#dependency-injection-in-pyagenity" title="Permanent link">&para;</a></h1>
+<p>Dependency injection (DI) is a fundamental design pattern that PyAgenity embraces to build flexible, testable, and maintainable agent applications. By integrating with InjectQ, PyAgenity provides a powerful dependency injection system that makes your agents more modular and easier to configure.</p>
+<h2 id="what-is-dependency-injection">What is Dependency Injection?<a class="headerlink" href="#what-is-dependency-injection" title="Permanent link">&para;</a></h2>
+<p>Dependency injection is a technique where objects receive their dependencies from external sources rather than creating them internally. Instead of a class saying "I need a database, let me create one," dependency injection says "I need a database, please provide me with one."</p>
+<p>This approach offers several advantages:
+- <strong>Decoupling</strong>: Components don't need to know how their dependencies are created
+- <strong>Testability</strong>: Easy to replace real dependencies with mocks during testing
+- <strong>Flexibility</strong>: Different implementations can be swapped without code changes
+- <strong>Configuration</strong>: Dependencies can be configured externally</p>
+<h2 id="pyagenitys-di-integration">PyAgenity's DI Integration<a class="headerlink" href="#pyagenitys-di-integration" title="Permanent link">&para;</a></h2>
+<p>PyAgenity integrates seamlessly with <a href="https://iamsdt.github.io/injectq/">InjectQ</a>, a lightweight, type-friendly dependency injection library. This integration allows you to inject dependencies into:</p>
+<ul>
+<li><strong>Node functions</strong> in your state graphs</li>
+<li><strong>Tool functions</strong> in your tool nodes</li>
+<li><strong>Prebuilt agents</strong> and their components</li>
+<li><strong>Custom services</strong> and utilities</li>
+</ul>
+<h2 id="available-injectable-objects-that-packed-with-pyagenity">Available Injectable Objects, that packed with PyAgenity<a class="headerlink" href="#available-injectable-objects-that-packed-with-pyagenity" title="Permanent link">&para;</a></h2>
+<p>When you compile a PyAgenity graph, several core services are automatically registered in the dependency injection container:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Details</th>
+<th>Usages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BaseCheckpointer</code></td>
+<td>A checkpointer that stores state in memory (default in-memory implementation).</td>
+<td>Provide or replace for persistence during graph execution; injected into nodes/tools that need to read/write full state.</td>
+</tr>
+<tr>
+<td><code>CallbackManager</code></td>
+<td>Manages lifecycle callbacks for agent events (before/after invoke, on error, etc.).</td>
+<td>Use to register metrics, logging, or custom hooks that run at specific agent lifecycle points.</td>
+</tr>
+<tr>
+<td><code>BaseStore</code></td>
+<td>Abstract interface for storing and retrieving arbitrary data (embeddings, documents, blobs).</td>
+<td>Bind a concrete store (e.g., Qdrant, Faiss) to persist vectors or documents used by RAG and memory stores.</td>
+</tr>
+<tr>
+<td><code>BaseContextManager</code></td>
+<td>Manages conversational context windows and summarisation strategies.</td>
+<td>Swap implementations to control how context is trimmed or summarised before model calls.</td>
+</tr>
+<tr>
+<td><code>BasePublisher</code></td>
+<td>Publishes runtime events to sinks (console, Redis, Kafka, etc.).</td>
+<td>Inject custom publisher to stream events to monitoring/observability pipelines.</td>
+</tr>
+<tr>
+<td><code>BaseIDGenerator</code></td>
+<td>Generates unique IDs used across invocations and resources.</td>
+<td>Inject for deterministic IDs, integration with existing ID schemes, or testing.</td>
+</tr>
+<tr>
+<td><code>generated_id</code></td>
+<td>The unique ID string generated for the current agent invocation.</td>
+<td>Read-only value injected into nodes/tools for tracing and correlation.</td>
+</tr>
+<tr>
+<td><code>generated_id_type</code></td>
+<td>The type of the generated ID (e.g., <code>"uuid"</code>, <code>"shortid"</code>).</td>
+<td>Useful for downstream systems that need to parse or route based on ID shape.</td>
+</tr>
+<tr>
+<td><code>generated_thread_name</code></td>
+<td>The name of the current execution thread (useful for multi-threaded or concurrent runs).</td>
+<td>Injected for logging, partitioning work, or naming resources created during the run.</td>
+</tr>
+<tr>
+<td><code>BackgroundTaskManager</code></td>
+<td>Manages background tasks for agents, allowing long-running work to be offloaded.</td>
+<td>Use to schedule async work, retries, or background side-effects without blocking the main run.</td>
+</tr>
+<tr>
+<td><code>StateGraph</code></td>
+<td>The current <code>StateGraph</code> instance representing the compiled graph.</td>
+<td>Access the graph structure, read node metadata, or perform runtime introspection and dynamic wiring.</td>
+</tr>
+</tbody>
+</table>
+<p>Note: For <code>BaseStore</code>, <code>BaseContextManager</code>, and <code>BasePublisher</code>, PyAgenity provides default implementations, but you can bind your own implementations to the container if needed.</p>
+<h2 id="the-container-pattern">The Container Pattern<a class="headerlink" href="#the-container-pattern" title="Permanent link">&para;</a></h2>
+<p>At the heart of PyAgenity's dependency injection is the <strong>container</strong> - a centralized registry that manages how dependencies are created and provided. Think of it as a smart factory that knows how to build and deliver the right objects when needed.</p>
+<h3 id="basic-container-usage">Basic Container Usage<a class="headerlink" href="#basic-container-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">injectq</span><span class="w"> </span><span class="kn">import</span> <span class="n">InjectQ</span>
+
+<span class="c1"># Get the global container instance</span>
+<span class="n">container</span> <span class="o">=</span> <span class="n">InjectQ</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+
+<span class="c1"># Register a simple value</span>
+<span class="n">container</span><span class="p">[</span><span class="s2">&quot;api_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;your-secret-key&quot;</span>
+<span class="n">container</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;default-string-value&quot;</span>
+
+<span class="c1"># Register an instance</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">DatabaseConnection</span><span class="p">()</span>
+<span class="n">container</span><span class="o">.</span><span class="n">bind_instance</span><span class="p">(</span><span class="n">DatabaseConnection</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+</code></pre></div>
+<p>When you compile a PyAgenity graph, you can pass this container, and it becomes available throughout your agent execution:</p>
+<div class="highlight"><pre><span></span><code><span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">checkpointer</span><span class="o">=</span><span class="n">checkpointer</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="injection-patterns">Injection Patterns<a class="headerlink" href="#injection-patterns" title="Permanent link">&para;</a></h2>
+<p>PyAgenity supports several ways to declare and receive dependencies in your functions.</p>
+<h3 id="type-based-injection-with-inject">Type-Based Injection with Inject[]<a class="headerlink" href="#type-based-injection-with-inject" title="Permanent link">&para;</a></h3>
+<p>The most common pattern uses the <code>Inject[Type]</code> annotation to specify what dependency you need:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">injectq</span><span class="w"> </span><span class="kn">import</span> <span class="n">Inject</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCheckpointer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">CallbackManager</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_agent_node</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">checkpointer</span><span class="p">:</span> <span class="n">InMemoryCheckpointer</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">InMemoryCheckpointer</span><span class="p">],</span>
+    <span class="n">callback</span><span class="p">:</span> <span class="n">CallbackManager</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">CallbackManager</span><span class="p">],</span>
+<span class="p">):</span>
+    <span class="c1"># Use your injected dependencies</span>
+    <span class="n">saved_state</span> <span class="o">=</span> <span class="k">await</span> <span class="n">checkpointer</span><span class="o">.</span><span class="n">aget</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">callback</span><span class="o">.</span><span class="n">before_invoke</span><span class="p">(</span><span class="s2">&quot;AI&quot;</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+    <span class="c1"># Your agent logic here</span>
+    <span class="k">return</span> <span class="n">updated_state</span>
+</code></pre></div>
+<h3 id="tool-parameter-injection">Tool Parameter Injection<a class="headerlink" href="#tool-parameter-injection" title="Permanent link">&para;</a></h3>
+<p>Tool functions can receive special injectable parameters that PyAgenity provides automatically:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span>
+    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># Regular parameter from tool call</span>
+    <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Auto-injected</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>   <span class="c1"># Auto-injected</span>
+    <span class="n">checkpointer</span><span class="p">:</span> <span class="n">InMemoryCheckpointer</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">InMemoryCheckpointer</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span><span class="p">:</span>
+    <span class="c1"># tool_call_id and state are automatically provided</span>
+    <span class="c1"># checkpointer comes from the container</span>
+
+    <span class="k">if</span> <span class="n">tool_call_id</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Handling tool call: </span><span class="si">{</span><span class="n">tool_call_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">weather_data</span> <span class="o">=</span> <span class="n">fetch_from_api</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Message</span><span class="o">.</span><span class="n">tool_message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">weather_data</span><span class="p">,</span> <span class="n">tool_call_id</span><span class="o">=</span><span class="n">tool_call_id</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="container-access-patterns">Container Access Patterns<a class="headerlink" href="#container-access-patterns" title="Permanent link">&para;</a></h3>
+<p>Sometimes you need direct access to the container for dynamic dependency resolution:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">flexible_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="n">container</span> <span class="o">=</span> <span class="n">InjectQ</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+
+    <span class="c1"># Get a required dependency</span>
+    <span class="n">message_id</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;generated_id&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Try to get an optional dependency with fallback</span>
+    <span class="n">custom_config</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">try_get</span><span class="p">(</span><span class="s2">&quot;custom_config&quot;</span><span class="p">,</span> <span class="s2">&quot;default-value&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Your logic here</span>
+</code></pre></div>
+<h2 id="dependency-lifecycles-and-scopes">Dependency Lifecycles and Scopes<a class="headerlink" href="#dependency-lifecycles-and-scopes" title="Permanent link">&para;</a></h2>
+<p>InjectQ supports different dependency lifecycles that control how and when dependencies are created:</p>
+<h3 id="singleton-pattern">Singleton Pattern<a class="headerlink" href="#singleton-pattern" title="Permanent link">&para;</a></h3>
+<p>Singletons are created once and shared across all requests:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">injectq</span><span class="w"> </span><span class="kn">import</span> <span class="n">singleton</span>
+
+<span class="nd">@singleton</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ConfigurationService</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">load_from_file</span><span class="p">()</span>
+
+<span class="c1"># Register with container</span>
+<span class="n">container</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ConfigurationService</span><span class="p">,</span> <span class="n">ConfigurationService</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="transient-dependencies">Transient Dependencies<a class="headerlink" href="#transient-dependencies" title="Permanent link">&para;</a></h3>
+<p>Transient dependencies are created fresh for each request:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RequestLogger</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Each injection gets a new instance</span>
+<span class="n">container</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">RequestLogger</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">RequestLogger</span><span class="p">())</span>
+</code></pre></div>
+<h3 id="request-scoping">Request Scoping<a class="headerlink" href="#request-scoping" title="Permanent link">&para;</a></h3>
+<p>For web applications or long-running processes, you might want dependencies that live for the duration of a request:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">injectq.scopes</span><span class="w"> </span><span class="kn">import</span> <span class="n">request_scoped</span>
+
+<span class="nd">@request_scoped</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RequestContext</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_id</span> <span class="o">=</span> <span class="n">generate_uuid</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="common-pyagenity-dependency-patterns">Common PyAgenity Dependency Patterns<a class="headerlink" href="#common-pyagenity-dependency-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="injecting-core-services">Injecting Core Services<a class="headerlink" href="#injecting-core-services" title="Permanent link">&para;</a></h3>
+<p>PyAgenity automatically registers several core services in the container:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_node</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="c1"># Core PyAgenity services</span>
+    <span class="n">checkpointer</span><span class="p">:</span> <span class="n">InMemoryCheckpointer</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">InMemoryCheckpointer</span><span class="p">],</span>
+    <span class="n">callback</span><span class="p">:</span> <span class="n">CallbackManager</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">CallbackManager</span><span class="p">],</span>
+    <span class="n">store</span><span class="p">:</span> <span class="n">BaseStore</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">BaseStore</span><span class="p">],</span>
+<span class="p">):</span>
+    <span class="c1"># These are automatically available when you compile your graph</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<h3 id="custom-service-registration">Custom Service Registration<a class="headerlink" href="#custom-service-registration" title="Permanent link">&para;</a></h3>
+<p>You can register your own services for injection:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">WeatherService</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Implementation here</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Register your service</span>
+<span class="n">weather_service</span> <span class="o">=</span> <span class="n">WeatherService</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;your-key&quot;</span><span class="p">)</span>
+<span class="n">container</span><span class="o">.</span><span class="n">bind_instance</span><span class="p">(</span><span class="n">WeatherService</span><span class="p">,</span> <span class="n">weather_service</span><span class="p">)</span>
+
+<span class="c1"># Use in your agents</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">weather_agent</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">weather</span><span class="p">:</span> <span class="n">WeatherService</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">WeatherService</span><span class="p">],</span>
+<span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">weather</span><span class="o">.</span><span class="n">get_weather</span><span class="p">(</span><span class="s2">&quot;New York&quot;</span><span class="p">)</span>
+    <span class="c1"># Process weather data</span>
+</code></pre></div>
+<h3 id="configuration-injection">Configuration Injection<a class="headerlink" href="#configuration-injection" title="Permanent link">&para;</a></h3>
+<p>A common pattern is injecting configuration values:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Register configuration</span>
+<span class="n">container</span><span class="p">[</span><span class="s2">&quot;llm_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o&quot;</span>
+<span class="n">container</span><span class="p">[</span><span class="s2">&quot;temperature&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">container</span><span class="p">[</span><span class="s2">&quot;max_tokens&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">llm_agent</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>  <span class="c1"># Gets &quot;llm_model&quot; if registered as str</span>
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+<span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">acompletion</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">convert_messages</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></div>
+<h2 id="advanced-patterns">Advanced Patterns<a class="headerlink" href="#advanced-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="factory-dependencies">Factory Dependencies<a class="headerlink" href="#factory-dependencies" title="Permanent link">&para;</a></h3>
+<p>Sometimes you need to create dependencies dynamically based on runtime conditions:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">injectq</span><span class="w"> </span><span class="kn">import</span> <span class="n">provider</span>
+
+<span class="nd">@provider</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_database_connection</span><span class="p">(</span><span class="n">environment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">DatabaseConnection</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">environment</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ProductionDB</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">DevelopmentDB</span><span class="p">()</span>
+
+<span class="n">container</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">DatabaseConnection</span><span class="p">,</span> <span class="n">create_database_connection</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="multi-implementation-patterns">Multi-Implementation Patterns<a class="headerlink" href="#multi-implementation-patterns" title="Permanent link">&para;</a></h3>
+<p>You can register different implementations and choose which one to inject:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EmailService</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span> <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SMTPEmailService</span><span class="p">(</span><span class="n">EmailService</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># SMTP implementation</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AWSEmailService</span><span class="p">(</span><span class="n">EmailService</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># AWS SES implementation</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Register based on environment</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;EMAIL_PROVIDER&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;aws&quot;</span><span class="p">:</span>
+    <span class="n">container</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">EmailService</span><span class="p">,</span> <span class="n">AWSEmailService</span><span class="p">())</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">container</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">EmailService</span><span class="p">,</span> <span class="n">SMTPEmailService</span><span class="p">())</span>
+</code></pre></div>
+<h3 id="conditional-dependencies">Conditional Dependencies<a class="headerlink" href="#conditional-dependencies" title="Permanent link">&para;</a></h3>
+<p>Use the container's flexibility for conditional dependency resolution:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">notification_agent</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">container</span> <span class="o">=</span> <span class="n">InjectQ</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+
+    <span class="c1"># Choose notification method based on user preference</span>
+    <span class="n">user_preference</span> <span class="o">=</span> <span class="n">extract_preference</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user_preference</span> <span class="o">==</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span>
+        <span class="n">notifier</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">EmailService</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">notifier</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">SlackService</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">notifier</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Your agent task is complete!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="testing-with-dependency-injection">Testing with Dependency Injection<a class="headerlink" href="#testing-with-dependency-injection" title="Permanent link">&para;</a></h2>
+<p>One of the biggest advantages of dependency injection is simplified testing. You can easily replace real dependencies with test doubles:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_weather_agent</span><span class="p">():</span>
+    <span class="c1"># Create test container</span>
+    <span class="n">test_container</span> <span class="o">=</span> <span class="n">InjectQ</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+
+    <span class="c1"># Mock the weather service</span>
+    <span class="n">mock_weather</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">mock_weather</span><span class="o">.</span><span class="n">get_weather</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Sunny, 75°F&quot;</span>
+    <span class="n">test_container</span><span class="o">.</span><span class="n">bind_instance</span><span class="p">(</span><span class="n">WeatherService</span><span class="p">,</span> <span class="n">mock_weather</span><span class="p">)</span>
+
+    <span class="c1"># Create graph with test container</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">container</span><span class="o">=</span><span class="n">test_container</span><span class="p">)</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;weather&quot;</span><span class="p">,</span> <span class="n">weather_agent_node</span><span class="p">)</span>
+    <span class="c1"># ... configure graph</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+    <span class="c1"># Test your agent</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Message</span><span class="o">.</span><span class="n">text_message</span><span class="p">(</span><span class="s2">&quot;Weather in NYC?&quot;</span><span class="p">)]})</span>
+
+    <span class="c1"># Verify mock was called</span>
+    <span class="n">mock_weather</span><span class="o">.</span><span class="n">get_weather</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s2">&quot;NYC&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="test-specific-overrides">Test-Specific Overrides<a class="headerlink" href="#test-specific-overrides" title="Permanent link">&para;</a></h3>
+<p>InjectQ provides utilities for test-specific dependency overrides:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_with_overrides</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">container</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">DatabaseService</span><span class="p">,</span> <span class="n">MockDatabase</span><span class="p">()):</span>
+        <span class="c1"># Your test code here</span>
+        <span class="c1"># The override is automatically cleaned up</span>
+        <span class="k">pass</span>
+</code></pre></div>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="keep-dependencies-focused">Keep Dependencies Focused<a class="headerlink" href="#keep-dependencies-focused" title="Permanent link">&para;</a></h3>
+<p>Don't inject everything into every function. Only inject what you actually need:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Good: Only inject what you use</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">simple_agent</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">logger</span><span class="p">:</span> <span class="n">Logger</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">Logger</span><span class="p">],</span>
+<span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing request&quot;</span><span class="p">)</span>
+    <span class="c1"># Simple logic here</span>
+
+<span class="c1"># Avoid: Injecting unused dependencies</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">over_injected_agent</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">logger</span><span class="p">:</span> <span class="n">Logger</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">Logger</span><span class="p">],</span>
+    <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">Database</span><span class="p">],</span>  <span class="c1"># Not used</span>
+    <span class="n">cache</span><span class="p">:</span> <span class="n">Cache</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">Cache</span><span class="p">],</span>           <span class="c1"># Not used</span>
+    <span class="n">email</span><span class="p">:</span> <span class="n">EmailService</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">EmailService</span><span class="p">],</span>  <span class="c1"># Not used</span>
+<span class="p">):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing request&quot;</span><span class="p">)</span>  <span class="c1"># Only using logger</span>
+</code></pre></div>
+<h3 id="use-abstract-base-classes">Use Abstract Base Classes<a class="headerlink" href="#use-abstract-base-classes" title="Permanent link">&para;</a></h3>
+<p>Define interfaces for your services to make them more testable and flexible:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StorageService</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span> <span class="k">pass</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span> <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FileStorageService</span><span class="p">(</span><span class="n">StorageService</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># File implementation</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DatabaseStorageService</span><span class="p">(</span><span class="n">StorageService</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1"># Database implementation  </span>
+        <span class="k">pass</span>
+
+<span class="c1"># Register the interface, not the concrete class</span>
+<span class="n">container</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">StorageService</span><span class="p">,</span> <span class="n">FileStorageService</span><span class="p">())</span>
+</code></pre></div>
+<h3 id="initialize-container-early">Initialize Container Early<a class="headerlink" href="#initialize-container-early" title="Permanent link">&para;</a></h3>
+<p>Set up your container and all dependencies before creating your graph:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_app</span><span class="p">():</span>
+    <span class="c1"># Container setup</span>
+    <span class="n">container</span> <span class="o">=</span> <span class="n">InjectQ</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+
+    <span class="c1"># Register all dependencies</span>
+    <span class="n">container</span><span class="o">.</span><span class="n">bind_instance</span><span class="p">(</span><span class="n">Logger</span><span class="p">,</span> <span class="n">setup_logger</span><span class="p">())</span>
+    <span class="n">container</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">DatabaseService</span><span class="p">,</span> <span class="n">create_database_service</span><span class="p">())</span>
+    <span class="n">container</span><span class="p">[</span><span class="s2">&quot;environment&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Create and configure graph</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">)</span>
+    <span class="c1"># ... add nodes and edges</span>
+
+    <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">checkpointer</span><span class="o">=</span><span class="n">checkpointer</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="leverage-container-debugging">Leverage Container Debugging<a class="headerlink" href="#leverage-container-debugging" title="Permanent link">&para;</a></h3>
+<p>InjectQ provides debugging capabilities to understand your dependency graph:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># See what&#39;s registered</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Registered dependencies:&quot;</span><span class="p">,</span> <span class="n">container</span><span class="o">.</span><span class="n">get_dependency_graph</span><span class="p">())</span>
+
+<span class="c1"># Validate your container setup</span>
+<span class="n">container</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>  <span class="c1"># Throws if circular dependencies exist</span>
+</code></pre></div>
+<h2 id="integration-with-pyagenity-features">Integration with PyAgenity Features<a class="headerlink" href="#integration-with-pyagenity-features" title="Permanent link">&para;</a></h2>
+<h3 id="prebuilt-agents">Prebuilt Agents<a class="headerlink" href="#prebuilt-agents" title="Permanent link">&para;</a></h3>
+<p>PyAgenity's prebuilt agents automatically work with dependency injection:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.prebuilt.agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReactAgent</span>
+
+<span class="c1"># Create container with your dependencies</span>
+<span class="n">container</span> <span class="o">=</span> <span class="n">InjectQ</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+<span class="n">container</span><span class="o">.</span><span class="n">bind_instance</span><span class="p">(</span><span class="n">WeatherService</span><span class="p">,</span> <span class="n">WeatherService</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;key&quot;</span><span class="p">))</span>
+
+<span class="c1"># Prebuilt agents will use your container</span>
+<span class="n">react_agent</span> <span class="o">=</span> <span class="n">ReactAgent</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">weather_tool</span><span class="p">],</span>
+    <span class="n">container</span><span class="o">=</span><span class="n">container</span><span class="p">,</span>  <span class="c1"># Your dependencies are available</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="callback-integration">Callback Integration<a class="headerlink" href="#callback-integration" title="Permanent link">&para;</a></h3>
+<p>Callbacks themselves can be dependency-injected services:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MetricsCallback</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metrics_service</span><span class="p">:</span> <span class="n">MetricsService</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">metrics_service</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">before_invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">):</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">type_</span><span class="si">}</span><span class="s2">_invocations&quot;</span><span class="p">)</span>
+
+<span class="c1"># Register and use</span>
+<span class="n">metrics_callback</span> <span class="o">=</span> <span class="n">MetricsCallback</span><span class="p">(</span><span class="n">metrics_service</span><span class="p">)</span>
+<span class="n">container</span><span class="o">.</span><span class="n">bind_instance</span><span class="p">(</span><span class="n">MetricsCallback</span><span class="p">,</span> <span class="n">metrics_callback</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="publisher-integration">Publisher Integration<a class="headerlink" href="#publisher-integration" title="Permanent link">&para;</a></h3>
+<p>Publishers can also be injected dependencies:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomPublisher</span><span class="p">(</span><span class="n">ConsolePublisher</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notification_service</span><span class="p">:</span> <span class="n">NotificationService</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notifications</span> <span class="o">=</span> <span class="n">notification_service</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">publish_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">EventModel</span><span class="p">):</span>
+        <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">publish_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">notifications</span><span class="o">.</span><span class="n">alert</span><span class="p">(</span><span class="s2">&quot;Agent error occurred&quot;</span><span class="p">)</span>
+
+<span class="n">container</span><span class="o">.</span><span class="n">bind_instance</span><span class="p">(</span><span class="n">CustomPublisher</span><span class="p">,</span> <span class="n">CustomPublisher</span><span class="p">(</span><span class="n">notification_service</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="troubleshooting-common-issues">Troubleshooting Common Issues<a class="headerlink" href="#troubleshooting-common-issues" title="Permanent link">&para;</a></h2>
+<h3 id="missing-dependencies">Missing Dependencies<a class="headerlink" href="#missing-dependencies" title="Permanent link">&para;</a></h3>
+<p>If you see errors about missing dependencies, check your container registration:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Error: No binding found for DatabaseService</span>
+<span class="c1"># Solution: Register the dependency</span>
+<span class="n">container</span><span class="o">.</span><span class="n">bind_instance</span><span class="p">(</span><span class="n">DatabaseService</span><span class="p">,</span> <span class="n">DatabaseService</span><span class="p">(</span><span class="n">connection_string</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="circular-dependencies">Circular Dependencies<a class="headerlink" href="#circular-dependencies" title="Permanent link">&para;</a></h3>
+<p>InjectQ can detect circular dependencies. If you encounter them, refactor your design:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Problematic: A depends on B, B depends on A</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ServiceA</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_b</span><span class="p">:</span> <span class="n">ServiceB</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">ServiceB</span><span class="p">]):</span> <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ServiceB</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_a</span><span class="p">:</span> <span class="n">ServiceA</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">ServiceA</span><span class="p">]):</span> <span class="k">pass</span>
+
+<span class="c1"># Solution: Extract common interface or use factory pattern</span>
+</code></pre></div>
+<h3 id="type-resolution-issues">Type Resolution Issues<a class="headerlink" href="#type-resolution-issues" title="Permanent link">&para;</a></h3>
+<p>Make sure your type annotations are precise:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Problematic: Generic type</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">agent</span><span class="p">(</span><span class="n">database</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="nb">object</span><span class="p">]):</span>  <span class="c1"># Too generic</span>
+
+<span class="c1"># Better: Specific type</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">agent</span><span class="p">(</span><span class="n">database</span><span class="p">:</span> <span class="n">DatabaseService</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">DatabaseService</span><span class="p">]):</span>
+</code></pre></div>
+<h2 id="performance-considerations">Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="container-overhead">Container Overhead<a class="headerlink" href="#container-overhead" title="Permanent link">&para;</a></h3>
+<p>The dependency injection container has minimal overhead, but be aware of:</p>
+<ul>
+<li><strong>Singleton vs Transient</strong>: Singletons are faster for repeated access</li>
+<li><strong>Factory Functions</strong>: More flexible but slightly slower than direct instances  </li>
+<li><strong>Container Lookups</strong>: Direct <code>container.get()</code> calls are fast but consider caching for hot paths</li>
+</ul>
+<h3 id="memory-management">Memory Management<a class="headerlink" href="#memory-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Singletons live for the container's lifetime</li>
+<li>Transient dependencies are garbage collected when no longer referenced</li>
+<li>Request-scoped dependencies are cleaned up at request end</li>
+</ul>
+<p>Dependency injection in PyAgenity transforms your agent applications from rigid, tightly-coupled systems into flexible, testable, and maintainable architectures. By embracing these patterns, you'll build agents that are easier to develop, test, and deploy in production environments.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.pagination", "navigation.goto_top", "navigation.path", "navigation.tabs", "navigation.top", "search-suggest", "search.highlight", "search.share", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

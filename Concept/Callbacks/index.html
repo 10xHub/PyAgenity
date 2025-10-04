@@ -1,0 +1,4519 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A lightweight Python framework for building intelligent agents and multi-agent workflows.">
+      
+      
+      
+        <link rel="canonical" href="https://iamsdt.github.io/pyagenity/Concept/Callbacks/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../Command/">
+      
+      
+      <link rel="icon" href="../../None">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Callbacks: Interception and Flow Control - PyAgenity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#callbacks-interception-and-flow-control" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyAgenity" class="md-header__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyAgenity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Callbacks: Interception and Flow Control
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  PyAgenity
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Concept
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyAgenity" class="md-nav__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PyAgenity
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Concept
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concept
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Callbacks: Interception and Flow Control
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks: Interception and Flow Control
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-interception-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the Interception Pattern
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callback-lifecycle-and-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Callback Lifecycle and Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Callback Lifecycle and Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-invoke-the-preparation-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Invoke: The Preparation Phase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-invoke-the-processing-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Invoke: The Processing Phase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-error-the-recovery-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      On Error: The Recovery Phase
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invocation-types-and-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invocation Types and Context
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Invocation Types and Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-invocations" class="md-nav__link">
+    <span class="md-ellipsis">
+      AI Invocations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-invocations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Invocations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-model-context-protocol-invocations" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP (Model Context Protocol) Invocations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callback-context-and-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Callback Context and Metadata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-callback-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Callback Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Callback Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chained-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chained Transformations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-logic-with-context-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Logic with Context Awareness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-recovery-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Recovery Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-agent-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with Agent Graphs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-and-debugging-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing and Debugging Callbacks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Commands: Combining State Updates with Control Flow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Threadname/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threadname
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dependency Injection in PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publisher: Real-time Agent Observability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../context/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Context
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Context
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer: The Agent's Session Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Messages: The Lifeblood of Agent Communication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent State: The Mind of Your Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store: The Agent's Knowledge Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/Config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Patterns &amp; Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/control_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Flow &amp; Edges
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution &amp; Streaming Runtime
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/human-in-the-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human-in-the-Loop (HITL) &amp; Interrupts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nodes &amp; Return Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools &amp; Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Tutorial/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/long_term_memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Long-Term Memory with Mem0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan-Act-Reflect Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QdrantStore Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG (Retrieval-Augmented Generation) with PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Tutorial/react/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/react/01-basic-react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic React Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/react/02-dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Dependency Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/react/03-mcp-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Model Context Protocol (MCP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorial/react/04-streaming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Streaming Responses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/adapters/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Adapters
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Adapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/adapters/llm/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Llm
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_1" id="__nav_4_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Llm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/llm/base_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/llm/litellm_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Litellm converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/llm/model_response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/adapters/tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/tools/composio_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Composio adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/adapters/tools/langchain_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Langchain adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/checkpointer/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Checkpointer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/checkpointer/base_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/checkpointer/in_memory_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    In memory checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/checkpointer/pg_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pg checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/exceptions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Exceptions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exceptions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/graph_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/node_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/recursion_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recursion error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/exceptions/storage_exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Storage exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/compiled_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Compiled graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Edge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/state_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    State graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/graph/tool_node/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tool node
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tool node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/deps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/executors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Executors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/tool_node/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/graph/utils/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/handler_mixins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handler mixins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/invoke_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/invoke_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/stream_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/stream_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/stream_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/graph/utils/utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/prebuilt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Prebuilt
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Prebuilt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/prebuilt/agent/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Agent
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5_1" id="__nav_4_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Agent
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/branch_join/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branch join
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/deep_research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deep research
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/guarded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guarded
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/map_reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map reduce
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan act reflect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/sequential/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sequential
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/supervisor_team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor team
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/prebuilt/agent/swarm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Swarm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/publisher/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Publisher
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Publisher
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/base_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/console_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Console publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Events
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/kafka_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kafka publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/publish/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publish
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/rabbitmq_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rabbitmq publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/publisher/redis_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redis publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/state/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    State
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            State
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/state/agent_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/state/base_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base context
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/state/execution_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/state/message_context_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message context manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/store/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Store
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Store
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/base_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/mem0_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mem0 store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Qdrant store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/store_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/store/embedding/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Embedding
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_5" id="__nav_4_8_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            Embedding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/embedding/base_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/store/embedding/openai_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Openai embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/utils/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/background_task_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background task manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/callable_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callable utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/reducers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reducers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/thread_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/utils/thread_name_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread name generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-interception-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the Interception Pattern
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callback-lifecycle-and-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Callback Lifecycle and Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Callback Lifecycle and Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-invoke-the-preparation-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Invoke: The Preparation Phase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-invoke-the-processing-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Invoke: The Processing Phase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-error-the-recovery-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      On Error: The Recovery Phase
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invocation-types-and-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invocation Types and Context
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Invocation Types and Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-invocations" class="md-nav__link">
+    <span class="md-ellipsis">
+      AI Invocations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tool-invocations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Invocations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-model-context-protocol-invocations" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCP (Model Context Protocol) Invocations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callback-context-and-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Callback Context and Metadata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-callback-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Callback Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Callback Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chained-transformations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chained Transformations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-logic-with-context-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conditional Logic with Context Awareness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-recovery-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Recovery Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-agent-graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with Agent Graphs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-and-debugging-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing and Debugging Callbacks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="callbacks-interception-and-flow-control">Callbacks: Interception and Flow Control<a class="headerlink" href="#callbacks-interception-and-flow-control" title="Permanent link">&para;</a></h1>
+<p>Callbacks in PyAgenity provide a powerful interception mechanism that allows you to hook into the execution flow of your agent graphs at critical decision points. Rather than simply observing events, callbacks enable you to actively participate in, modify, and control the execution process as it unfolds.</p>
+<h2 id="understanding-the-interception-pattern">Understanding the Interception Pattern<a class="headerlink" href="#understanding-the-interception-pattern" title="Permanent link">&para;</a></h2>
+<p>Think of callbacks as strategic checkpoints placed throughout your agent's thinking process. When your agent is about to call a tool, query an AI model, or execute any external operation, PyAgenity pauses and gives your callback system the opportunity to:</p>
+<ul>
+<li><strong>Validate inputs</strong> before they're processed</li>
+<li><strong>Transform or enrich data</strong> as it flows through the system  </li>
+<li><strong>Implement custom logic</strong> for error recovery and handling</li>
+<li><strong>Modify outputs</strong> before they're returned to the agent</li>
+<li><strong>Apply security policies</strong> and business rules consistently</li>
+</ul>
+<p>This creates a layered architecture where your core agent logic remains clean and focused, while cross-cutting concerns like validation, logging, security, and transformation are handled elegantly through the callback system.</p>
+<h2 id="callback-lifecycle-and-flow">Callback Lifecycle and Flow<a class="headerlink" href="#callback-lifecycle-and-flow" title="Permanent link">&para;</a></h2>
+<p>The callback system operates around three fundamental moments in any operation:</p>
+<h3 id="before-invoke-the-preparation-phase">Before Invoke: The Preparation Phase<a class="headerlink" href="#before-invoke-the-preparation-phase" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_before_invoke</span><span class="p">,</span> <span class="n">InvocationType</span><span class="p">,</span> <span class="n">CallbackContext</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">validate_tool_input</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate and potentially modify tool inputs before execution.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">function_name</span> <span class="o">==</span> <span class="s2">&quot;database_query&quot;</span><span class="p">:</span>
+        <span class="c1"># Apply security validations</span>
+        <span class="k">if</span> <span class="s2">&quot;DROP&quot;</span> <span class="ow">in</span> <span class="n">input_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Dangerous SQL operations not allowed&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add audit context</span>
+        <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;audit_user&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="s2">&quot;unknown&quot;</span><span class="p">)</span>
+        <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">input_data</span>
+
+<span class="c1"># Register for tool invocations</span>
+<span class="n">register_before_invoke</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">TOOL</span><span class="p">,</span> <span class="n">validate_tool_input</span><span class="p">)</span>
+</code></pre></div>
+<p>Before any tool, AI model, or MCP function is called, PyAgenity executes all registered <code>before_invoke</code> callbacks. This is your opportunity to:
+- Validate inputs according to business rules
+- Add contextual information or metadata
+- Transform data formats or apply normalization
+- Implement rate limiting or quota checks
+- Log invocation attempts for audit trails</p>
+<h3 id="after-invoke-the-processing-phase">After Invoke: The Processing Phase<a class="headerlink" href="#after-invoke-the-processing-phase" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_after_invoke</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">enrich_ai_response</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">output_data</span><span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enrich AI responses with additional context and formatting.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">invocation_type</span> <span class="o">==</span> <span class="n">InvocationType</span><span class="o">.</span><span class="n">AI</span><span class="p">:</span>
+        <span class="c1"># Add confidence scoring based on response characteristics</span>
+        <span class="n">response_text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">output_data</span><span class="p">)</span>
+        <span class="n">confidence_score</span> <span class="o">=</span> <span class="n">calculate_confidence</span><span class="p">(</span><span class="n">response_text</span><span class="p">)</span>
+
+        <span class="c1"># Transform the response if needed</span>
+        <span class="k">if</span> <span class="n">confidence_score</span> <span class="o">&lt;</span> <span class="mf">0.7</span><span class="p">:</span>
+            <span class="n">enhanced_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_clarification_prompt</span><span class="p">(</span><span class="n">response_text</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">enhanced_response</span>
+
+    <span class="k">return</span> <span class="n">output_data</span>
+
+<span class="n">register_after_invoke</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">AI</span><span class="p">,</span> <span class="n">enrich_ai_response</span><span class="p">)</span>
+</code></pre></div>
+<p>After successful execution, <code>after_invoke</code> callbacks process the results. This phase enables:
+- Response validation and quality assessment
+- Data transformation and formatting
+- Adding computed metadata or enrichment
+- Implementing caching strategies
+- Logging successful operations</p>
+<h3 id="on-error-the-recovery-phase">On Error: The Recovery Phase<a class="headerlink" href="#on-error-the-recovery-phase" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_on_error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.message</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_tool_errors</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">error</span><span class="p">:</span> <span class="ne">Exception</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implement intelligent error recovery for tool failures.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">function_name</span> <span class="o">==</span> <span class="s2">&quot;external_api_call&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">):</span>
+            <span class="c1"># Implement retry logic with backoff</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">retry_with_backoff</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">AuthenticationError</span><span class="p">):</span>
+            <span class="c1"># Generate helpful error message for the agent</span>
+            <span class="k">return</span> <span class="n">Message</span><span class="o">.</span><span class="n">from_text</span><span class="p">(</span>
+                <span class="s2">&quot;The external service authentication failed. &quot;</span>
+                <span class="s2">&quot;Please check the API credentials and try again.&quot;</span><span class="p">,</span>
+                <span class="n">role</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span>
+            <span class="p">)</span>
+
+    <span class="c1"># Return None to propagate the error normally</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">register_on_error</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">TOOL</span><span class="p">,</span> <span class="n">handle_tool_errors</span><span class="p">)</span>
+</code></pre></div>
+<p>When operations fail, <code>on_error</code> callbacks provide sophisticated error handling:
+- Implementing retry strategies with exponential backoff
+- Converting technical errors into actionable agent messages
+- Logging failures for monitoring and debugging
+- Providing fallback responses or alternative data sources</p>
+<h2 id="invocation-types-and-context">Invocation Types and Context<a class="headerlink" href="#invocation-types-and-context" title="Permanent link">&para;</a></h2>
+<p>PyAgenity distinguishes between three types of operations that can trigger callbacks:</p>
+<h3 id="ai-invocations">AI Invocations<a class="headerlink" href="#ai-invocations" title="Permanent link">&para;</a></h3>
+<p>These occur when your agent calls language models for reasoning, planning, or text generation:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">monitor_ai_usage</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Track AI usage patterns and costs.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">invocation_type</span> <span class="o">==</span> <span class="n">InvocationType</span><span class="o">.</span><span class="n">AI</span><span class="p">:</span>
+        <span class="c1"># Log token usage and costs</span>
+        <span class="n">estimated_tokens</span> <span class="o">=</span> <span class="n">estimate_tokens</span><span class="p">(</span><span class="n">input_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+        <span class="n">log_ai_usage</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">node_name</span><span class="p">,</span> <span class="n">estimated_tokens</span><span class="p">)</span>
+
+        <span class="c1"># Add usage tracking to metadata</span>
+        <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;usage_tracking&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="n">context</span><span class="o">.</span><span class="n">node_name</span><span class="p">,</span>
+            <span class="s2">&quot;estimated_tokens&quot;</span><span class="p">:</span> <span class="n">estimated_tokens</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">input_data</span>
+</code></pre></div>
+<h3 id="tool-invocations">Tool Invocations<a class="headerlink" href="#tool-invocations" title="Permanent link">&para;</a></h3>
+<p>These trigger when your agent executes functions, APIs, or external services:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">secure_tool_access</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply security policies to tool invocations.&quot;&quot;&quot;</span>
+    <span class="n">user_permissions</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user_permissions&quot;</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="c1"># Check if user has permission for this tool</span>
+    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">function_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">user_permissions</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">PermissionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User not authorized to use </span><span class="si">{</span><span class="n">context</span><span class="o">.</span><span class="n">function_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Add security context</span>
+    <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;security_context&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="n">user_permissions</span><span class="p">,</span>
+        <span class="s2">&quot;access_time&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">input_data</span>
+</code></pre></div>
+<h3 id="mcp-model-context-protocol-invocations">MCP (Model Context Protocol) Invocations<a class="headerlink" href="#mcp-model-context-protocol-invocations" title="Permanent link">&para;</a></h3>
+<p>These handle calls to external MCP services for specialized capabilities:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">optimize_mcp_calls</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Optimize and cache MCP service calls.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">invocation_type</span> <span class="o">==</span> <span class="n">InvocationType</span><span class="o">.</span><span class="n">MCP</span><span class="p">:</span>
+        <span class="c1"># Check cache first</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="n">generate_cache_key</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">function_name</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
+        <span class="n">cached_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_from_cache</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">cached_result</span><span class="p">:</span>
+            <span class="c1"># Return cached result wrapped as appropriate response</span>
+            <span class="k">return</span> <span class="n">create_cached_response</span><span class="p">(</span><span class="n">cached_result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">input_data</span>
+</code></pre></div>
+<h2 id="callback-context-and-metadata">Callback Context and Metadata<a class="headerlink" href="#callback-context-and-metadata" title="Permanent link">&para;</a></h2>
+<p>Each callback receives a rich <code>CallbackContext</code> that provides detailed information about the current operation:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CallbackContext</span><span class="p">:</span>
+    <span class="n">invocation_type</span><span class="p">:</span> <span class="n">InvocationType</span>  <span class="c1"># AI, TOOL, or MCP</span>
+    <span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span>                   <span class="c1"># Name of the executing node</span>
+    <span class="n">function_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>        <span class="c1"># Specific function being called</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>  <span class="c1"># Additional context data</span>
+</code></pre></div>
+<p>This context enables callbacks to make intelligent decisions about how to handle different operations:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">adaptive_callback</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply different logic based on context.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Different handling based on node type</span>
+    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">node_name</span> <span class="o">==</span> <span class="s2">&quot;research_node&quot;</span><span class="p">:</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">apply_research_policies</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">context</span><span class="o">.</span><span class="n">node_name</span> <span class="o">==</span> <span class="s2">&quot;decision_node&quot;</span><span class="p">:</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">add_decision_context</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+
+    <span class="c1"># Function-specific logic</span>
+    <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">function_name</span> <span class="o">==</span> <span class="s2">&quot;web_search&quot;</span><span class="p">:</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sanitize_search_query</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+
+    <span class="c1"># Access custom metadata</span>
+    <span class="n">user_context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user_context&quot;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="k">if</span> <span class="n">user_context</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;debug_mode&quot;</span><span class="p">):</span>
+        <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;debug&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="n">input_data</span>
+</code></pre></div>
+<h2 id="advanced-callback-patterns">Advanced Callback Patterns<a class="headerlink" href="#advanced-callback-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="chained-transformations">Chained Transformations<a class="headerlink" href="#chained-transformations" title="Permanent link">&para;</a></h3>
+<p>Multiple callbacks of the same type are executed in registration order, allowing for sophisticated data pipelines:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># First callback: Basic validation</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">validate_input</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">input_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;required_field&quot;</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing required field&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">input_data</span>
+
+<span class="c1"># Second callback: Data enrichment</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">enrich_input</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;enriched_at&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;enriched_by&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;callback_system&quot;</span>
+    <span class="k">return</span> <span class="n">input_data</span>
+
+<span class="c1"># Third callback: Format transformation</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">transform_format</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="c1"># Convert to expected format</span>
+    <span class="k">return</span> <span class="n">transform_to_service_format</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+
+<span class="c1"># Register in order</span>
+<span class="n">register_before_invoke</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">TOOL</span><span class="p">,</span> <span class="n">validate_input</span><span class="p">)</span>
+<span class="n">register_before_invoke</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">TOOL</span><span class="p">,</span> <span class="n">enrich_input</span><span class="p">)</span>
+<span class="n">register_before_invoke</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">TOOL</span><span class="p">,</span> <span class="n">transform_format</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="conditional-logic-with-context-awareness">Conditional Logic with Context Awareness<a class="headerlink" href="#conditional-logic-with-context-awareness" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">context_aware_processor</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply different processing based on runtime context.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Environment-based logic</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;production&quot;</span><span class="p">:</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">apply_production_safeguards</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">add_debug_information</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+
+    <span class="c1"># User role-based logic</span>
+    <span class="n">user_role</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user_role&quot;</span><span class="p">,</span> <span class="s2">&quot;guest&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user_role</span> <span class="o">==</span> <span class="s2">&quot;admin&quot;</span><span class="p">:</span>
+        <span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;admin_privileges&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">user_role</span> <span class="o">==</span> <span class="s2">&quot;guest&quot;</span><span class="p">:</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">apply_guest_restrictions</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">input_data</span>
+</code></pre></div>
+<h3 id="error-recovery-strategies">Error Recovery Strategies<a class="headerlink" href="#error-recovery-strategies" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">intelligent_error_recovery</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> 
+    <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> 
+    <span class="n">error</span><span class="p">:</span> <span class="ne">Exception</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implement sophisticated error recovery patterns.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Network-related errors</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)):</span>
+        <span class="n">retry_count</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;retry_count&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retry_count</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="c1"># Update metadata for next retry</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;retry_count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">retry_count</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">retry_count</span><span class="p">)</span>  <span class="c1"># Exponential backoff</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">retry_operation</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
+
+    <span class="c1"># Data validation errors</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">ValidationError</span><span class="p">):</span>
+        <span class="c1"># Try to fix common issues automatically</span>
+        <span class="n">fixed_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attempt_data_repair</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fixed_data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">execute_with_fixed_data</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">fixed_data</span><span class="p">)</span>
+
+    <span class="c1"># Service-specific errors</span>
+    <span class="k">elif</span> <span class="n">context</span><span class="o">.</span><span class="n">function_name</span> <span class="o">==</span> <span class="s2">&quot;external_api&quot;</span><span class="p">:</span>
+        <span class="c1"># Generate informative error message for the agent</span>
+        <span class="k">return</span> <span class="n">Message</span><span class="o">.</span><span class="n">from_text</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;External API call failed: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">. &quot;</span>
+            <span class="s2">&quot;Consider using alternative data sources or simplified queries.&quot;</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="s2">&quot;tool&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># Let the error propagate</span>
+</code></pre></div>
+<h2 id="integration-with-agent-graphs">Integration with Agent Graphs<a class="headerlink" href="#integration-with-agent-graphs" title="Permanent link">&para;</a></h2>
+<p>Callbacks integrate seamlessly with your graph construction, providing consistent behavior across all nodes:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">CallbackManager</span><span class="p">,</span> <span class="n">default_callback_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
+
+<span class="c1"># Set up callbacks</span>
+<span class="n">register_before_invoke</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">TOOL</span><span class="p">,</span> <span class="n">security_validator</span><span class="p">)</span>
+<span class="n">register_after_invoke</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">AI</span><span class="p">,</span> <span class="n">response_enhancer</span><span class="p">)</span>
+<span class="n">register_on_error</span><span class="p">(</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">MCP</span><span class="p">,</span> <span class="n">error_recovery_handler</span><span class="p">)</span>
+
+<span class="c1"># Create graph with callback integration</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">AgentState</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;researcher&quot;</span><span class="p">,</span> <span class="n">research_node</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;analyzer&quot;</span><span class="p">,</span> <span class="n">analysis_node</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">web_search</span><span class="p">,</span> <span class="n">data_processor</span><span class="p">]))</span>
+
+<span class="c1"># Compile with callback manager</span>
+<span class="n">compiled_graph</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">checkpointer</span><span class="o">=</span><span class="n">checkpointer</span><span class="p">,</span>
+    <span class="n">callback_manager</span><span class="o">=</span><span class="n">default_callback_manager</span>  <span class="c1"># Uses registered callbacks</span>
+<span class="p">)</span>
+
+<span class="c1"># All tool calls, AI invocations, and MCP calls will now use your callbacks</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">compiled_graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">user_message</span><span class="p">]},</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="s2">&quot;user123&quot;</span><span class="p">,</span> <span class="s2">&quot;permissions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;web_search&quot;</span><span class="p">,</span> <span class="s2">&quot;data_processor&quot;</span><span class="p">]}</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="testing-and-debugging-callbacks">Testing and Debugging Callbacks<a class="headerlink" href="#testing-and-debugging-callbacks" title="Permanent link">&para;</a></h2>
+<p>Callbacks can significantly impact your agent's behavior, making testing crucial:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">CallbackManager</span><span class="p">,</span> <span class="n">InvocationType</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_callback_behavior</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test callback system with controlled inputs.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Create isolated callback manager for testing</span>
+    <span class="n">test_callback_manager</span> <span class="o">=</span> <span class="n">CallbackManager</span><span class="p">()</span>
+
+    <span class="c1"># Register test callbacks</span>
+    <span class="n">test_callback_manager</span><span class="o">.</span><span class="n">register_before_invoke</span><span class="p">(</span>
+        <span class="n">InvocationType</span><span class="o">.</span><span class="n">TOOL</span><span class="p">,</span> 
+        <span class="n">test_input_validator</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create test context</span>
+    <span class="n">test_context</span> <span class="o">=</span> <span class="n">CallbackContext</span><span class="p">(</span>
+        <span class="n">invocation_type</span><span class="o">=</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">TOOL</span><span class="p">,</span>
+        <span class="n">node_name</span><span class="o">=</span><span class="s2">&quot;test_node&quot;</span><span class="p">,</span>
+        <span class="n">function_name</span><span class="o">=</span><span class="s2">&quot;test_function&quot;</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Test the callback</span>
+    <span class="n">test_input</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;test query&quot;</span><span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">test_callback_manager</span><span class="o">.</span><span class="n">execute_before_invoke</span><span class="p">(</span>
+        <span class="n">test_context</span><span class="p">,</span> 
+        <span class="n">test_input</span>
+    <span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;test query&quot;</span>
+    <span class="k">assert</span> <span class="s2">&quot;processed_by_callback&quot;</span> <span class="ow">in</span> <span class="n">result</span>
+
+<span class="c1"># Debug callback with logging</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">debug_callback</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">CallbackContext</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Debug callback that logs all interactions.&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Callback triggered: </span><span class="si">{</span><span class="n">context</span><span class="o">.</span><span class="n">invocation_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node: </span><span class="si">{</span><span class="n">context</span><span class="o">.</span><span class="n">node_name</span><span class="si">}</span><span class="s2">, Function: </span><span class="si">{</span><span class="n">context</span><span class="o">.</span><span class="n">function_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input data keys: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">input_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">input_data</span>
+</code></pre></div>
+<p>The callback system transforms PyAgenity from a simple execution engine into a sophisticated, controllable platform where every operation can be monitored, modified, and managed according to your specific requirements. By strategically placing callbacks throughout your agent workflows, you create robust, secure, and maintainable AI systems that adapt to complex real-world requirements.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.pagination", "navigation.goto_top", "navigation.path", "navigation.tabs", "navigation.top", "search-suggest", "search.highlight", "search.share", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

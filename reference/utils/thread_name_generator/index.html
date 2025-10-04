@@ -1,0 +1,5814 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A lightweight Python framework for building intelligent agents and multi-agent workflows.">
+      
+      
+      
+        <link rel="canonical" href="https://iamsdt.github.io/pyagenity/reference/utils/thread_name_generator/">
+      
+      
+        <link rel="prev" href="../thread_info/">
+      
+      
+      
+      <link rel="icon" href="../../../None">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Thread name generator - PyAgenity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pyagenity.utils.thread_name_generator" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="PyAgenity" class="md-header__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyAgenity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Thread name generator
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  PyAgenity
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Concept/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Concept
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="PyAgenity" class="md-nav__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PyAgenity
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Concept/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Concept
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concept
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/Callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks: Interception and Flow Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/Command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Commands: Combining State Updates with Control Flow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/Threadname/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threadname
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dependency Injection in PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publisher: Real-time Agent Observability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Concept/context/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Context
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Context
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/context/checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer: The Agent's Session Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/context/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Messages: The Lifeblood of Agent Communication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/context/state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent State: The Mind of Your Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/context/store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store: The Agent's Knowledge Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Concept/graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/Config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Patterns &amp; Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/control_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Flow &amp; Edges
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution &amp; Streaming Runtime
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/human-in-the-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human-in-the-Loop (HITL) &amp; Interrupts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nodes &amp; Return Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools &amp; Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Tutorial/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/long_term_memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Long-Term Memory with Mem0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan-Act-Reflect Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QdrantStore Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG (Retrieval-Augmented Generation) with PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Tutorial/react/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/react/01-basic-react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic React Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/react/02-dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Dependency Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/react/03-mcp-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Model Context Protocol (MCP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tutorial/react/04-streaming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Streaming Responses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../adapters/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Adapters
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Adapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../adapters/llm/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Llm
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_1" id="__nav_4_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Llm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adapters/llm/base_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adapters/llm/litellm_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Litellm converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adapters/llm/model_response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../adapters/tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adapters/tools/composio_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Composio adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adapters/tools/langchain_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Langchain adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../checkpointer/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Checkpointer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../checkpointer/base_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../checkpointer/in_memory_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    In memory checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../checkpointer/pg_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pg checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../exceptions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Exceptions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exceptions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exceptions/graph_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exceptions/node_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exceptions/recursion_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recursion error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exceptions/storage_exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Storage exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/compiled_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Compiled graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Edge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/state_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    State graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../graph/tool_node/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tool node
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tool node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/tool_node/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/tool_node/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/tool_node/deps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/tool_node/executors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Executors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/tool_node/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../graph/utils/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/utils/handler_mixins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handler mixins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/utils/invoke_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/utils/invoke_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/utils/stream_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/utils/stream_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/utils/stream_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/utils/utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../prebuilt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Prebuilt
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Prebuilt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../prebuilt/agent/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Agent
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5_1" id="__nav_4_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Agent
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/branch_join/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branch join
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/deep_research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deep research
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/guarded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guarded
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/map_reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map reduce
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan act reflect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/sequential/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sequential
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/supervisor_team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor team
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prebuilt/agent/swarm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Swarm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../publisher/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Publisher
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Publisher
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publisher/base_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publisher/console_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Console publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publisher/events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Events
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publisher/kafka_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kafka publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publisher/publish/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publish
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publisher/rabbitmq_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rabbitmq publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publisher/redis_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redis publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../state/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    State
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            State
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state/agent_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state/base_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base context
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state/execution_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state/message_context_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message context manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../store/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Store
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Store
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../store/base_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../store/mem0_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mem0 store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../store/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Qdrant store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../store/store_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../store/embedding/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Embedding
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_5" id="__nav_4_8_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            Embedding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../store/embedding/base_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../store/embedding/openai_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Openai embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background_task_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background task manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../callable_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callable utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reducers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reducers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thread_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Thread name generator
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread name generator
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      thread_name_generator
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      AIThreadNameGenerator
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AIThreadNameGenerator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ACTION_PATTERNS" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACTION_PATTERNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ADJECTIVES" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADJECTIVES
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.COMPOUND_PATTERNS" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PATTERNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.NOUNS" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOUNS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_action_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_action_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_compound_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_compound_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_simple_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_simple_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.generate_dummy_thread_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_dummy_thread_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_dummy_thread_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.generate_dummy_thread_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      thread_name_generator
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      AIThreadNameGenerator
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AIThreadNameGenerator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ACTION_PATTERNS" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACTION_PATTERNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ADJECTIVES" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADJECTIVES
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.COMPOUND_PATTERNS" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PATTERNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.NOUNS" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOUNS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_action_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_action_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_compound_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_compound_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_simple_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_simple_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.generate_dummy_thread_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_dummy_thread_name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generate_dummy_thread_name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.utils.thread_name_generator.generate_dummy_thread_name(separator)" class="md-nav__link">
+    <span class="md-ellipsis">
+      separator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Thread name generator</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="pyagenity.utils.thread_name_generator"></a>
+    <div class="doc doc-contents first">
+
+        <p>Thread name generation utilities for AI agent conversations.</p>
+<p>This module provides the AIThreadNameGenerator class and helper function for generating
+meaningful, varied, and human-friendly thread names for AI chat sessions using different
+patterns and themes.</p>
+
+
+<p><span class="doc-section-title">Classes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            AIThreadNameGenerator (pyagenity.utils.thread_name_generator.AIThreadNameGenerator)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator">AIThreadNameGenerator</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Generates thread names using adjective-noun, action-based,</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Functions:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="            generate_dummy_thread_name (pyagenity.utils.thread_name_generator.generate_dummy_thread_name)" href="../../#pyagenity.utils.thread_name_generator.generate_dummy_thread_name">generate_dummy_thread_name</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Convenience function for generating a thread name.</p>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<h2 id="pyagenity.utils.thread_name_generator-classes">Classes<a href="#pyagenity.utils.thread_name_generator-classes" class="headerlink" title="Permanent link">&para;</a></h2>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">AIThreadNameGenerator</span>
+
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Generates meaningful, varied thread names for AI conversations using different
+patterns and themes. Patterns include adjective-noun, action-based, and compound
+descriptive names.</p>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>AIThreadNameGenerator().generate_name()
+'thoughtful-dialogue'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+<p><span class="doc-section-title">Methods:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="            generate_action_name (pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name">generate_action_name</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Generate an action-based thread name for a more dynamic feel.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="            generate_compound_name (pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name">generate_compound_name</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Generate a compound descriptive thread name.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="            generate_name (pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name">generate_name</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Generate a meaningful thread name using random pattern selection.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="            generate_simple_name (pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name">generate_simple_name</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Generate a simple adjective-noun combination for a thread name.</p>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
+
+
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            ACTION_PATTERNS
+
+
+  
+      class-attribute
+      instance-attribute
+   (pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ACTION_PATTERNS)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ACTION_PATTERNS">ACTION_PATTERNS</a></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            ADJECTIVES
+
+
+  
+      class-attribute
+      instance-attribute
+   (pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ADJECTIVES)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ADJECTIVES">ADJECTIVES</a></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            COMPOUND_PATTERNS
+
+
+  
+      class-attribute
+      instance-attribute
+   (pyagenity.utils.thread_name_generator.AIThreadNameGenerator.COMPOUND_PATTERNS)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.COMPOUND_PATTERNS">COMPOUND_PATTERNS</a></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            NOUNS
+
+
+  
+      class-attribute
+      instance-attribute
+   (pyagenity.utils.thread_name_generator.AIThreadNameGenerator.NOUNS)" href="../../#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.NOUNS">NOUNS</a></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+              <details class="quote">
+                <summary>Source code in <code>pyagenity/utils/thread_name_generator.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AIThreadNameGenerator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates meaningful, varied thread names for AI conversations using different</span>
+<span class="sd">    patterns and themes. Patterns include adjective-noun, action-based, and compound</span>
+<span class="sd">    descriptive names.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; AIThreadNameGenerator().generate_name()</span>
+<span class="sd">        &#39;thoughtful-dialogue&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Enhanced adjectives grouped by semantic meaning</span>
+    <span class="n">ADJECTIVES</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Intellectual</span>
+        <span class="s2">&quot;thoughtful&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;insightful&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;analytical&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;logical&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;strategic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;methodical&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;systematic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;comprehensive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;detailed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;precise&quot;</span><span class="p">,</span>
+        <span class="c1"># Creative</span>
+        <span class="s2">&quot;creative&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;imaginative&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;innovative&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;artistic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;expressive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;original&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;inventive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;inspired&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;visionary&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;whimsical&quot;</span><span class="p">,</span>
+        <span class="c1"># Emotional/Social</span>
+        <span class="s2">&quot;engaging&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;collaborative&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;meaningful&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;productive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;harmonious&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;enlightening&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;empathetic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;supportive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;encouraging&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uplifting&quot;</span><span class="p">,</span>
+        <span class="c1"># Dynamic</span>
+        <span class="s2">&quot;dynamic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;energetic&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vibrant&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lively&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spirited&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;flowing&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;adaptive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;responsive&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;interactive&quot;</span><span class="p">,</span>
+        <span class="c1"># Quality-focused</span>
+        <span class="s2">&quot;focused&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dedicated&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;thorough&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;meticulous&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;careful&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;patient&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;persistent&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resilient&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;determined&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ambitious&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Enhanced nouns with more conversational context</span>
+    <span class="n">NOUNS</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Conversation-related</span>
+        <span class="s2">&quot;dialogue&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;conversation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;discussion&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;exchange&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;chat&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;consultation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;session&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;meeting&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;interaction&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;communication&quot;</span><span class="p">,</span>
+        <span class="c1"># Journey/Process</span>
+        <span class="s2">&quot;journey&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;exploration&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;adventure&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;quest&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;voyage&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;expedition&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;discovery&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;investigation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;research&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;study&quot;</span><span class="p">,</span>
+        <span class="c1"># Conceptual</span>
+        <span class="s2">&quot;insight&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vision&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;perspective&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;understanding&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;wisdom&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;knowledge&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;learning&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;growth&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;development&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;progress&quot;</span><span class="p">,</span>
+        <span class="c1"># Solution-oriented</span>
+        <span class="s2">&quot;solution&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;approach&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;strategy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;method&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;framework&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;plan&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;blueprint&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pathway&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;route&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;direction&quot;</span><span class="p">,</span>
+        <span class="c1"># Creative/Abstract</span>
+        <span class="s2">&quot;canvas&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;story&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;narrative&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;symphony&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;composition&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;creation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;masterpiece&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;design&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pattern&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;concept&quot;</span><span class="p">,</span>
+        <span class="c1"># Collaborative</span>
+        <span class="s2">&quot;partnership&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;collaboration&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;alliance&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;connection&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bond&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;synergy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;harmony&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;unity&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cooperation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;teamwork&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Action-based patterns for more dynamic names</span>
+    <span class="n">ACTION_PATTERNS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;exploring&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ideas&quot;</span><span class="p">,</span> <span class="s2">&quot;concepts&quot;</span><span class="p">,</span> <span class="s2">&quot;possibilities&quot;</span><span class="p">,</span> <span class="s2">&quot;mysteries&quot;</span><span class="p">,</span> <span class="s2">&quot;frontiers&quot;</span><span class="p">,</span> <span class="s2">&quot;depths&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;building&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;solutions&quot;</span><span class="p">,</span> <span class="s2">&quot;understanding&quot;</span><span class="p">,</span> <span class="s2">&quot;connections&quot;</span><span class="p">,</span> <span class="s2">&quot;frameworks&quot;</span><span class="p">,</span> <span class="s2">&quot;bridges&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;discovering&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;insights&quot;</span><span class="p">,</span> <span class="s2">&quot;patterns&quot;</span><span class="p">,</span> <span class="s2">&quot;answers&quot;</span><span class="p">,</span> <span class="s2">&quot;truths&quot;</span><span class="p">,</span> <span class="s2">&quot;secrets&quot;</span><span class="p">,</span> <span class="s2">&quot;wisdom&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;crafting&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;responses&quot;</span><span class="p">,</span> <span class="s2">&quot;solutions&quot;</span><span class="p">,</span> <span class="s2">&quot;stories&quot;</span><span class="p">,</span> <span class="s2">&quot;strategies&quot;</span><span class="p">,</span> <span class="s2">&quot;experiences&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;navigating&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;challenges&quot;</span><span class="p">,</span> <span class="s2">&quot;questions&quot;</span><span class="p">,</span> <span class="s2">&quot;complexities&quot;</span><span class="p">,</span> <span class="s2">&quot;territories&quot;</span><span class="p">,</span> <span class="s2">&quot;paths&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;unlocking&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;potential&quot;</span><span class="p">,</span> <span class="s2">&quot;mysteries&quot;</span><span class="p">,</span> <span class="s2">&quot;possibilities&quot;</span><span class="p">,</span> <span class="s2">&quot;creativity&quot;</span><span class="p">,</span> <span class="s2">&quot;knowledge&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;weaving&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ideas&quot;</span><span class="p">,</span> <span class="s2">&quot;stories&quot;</span><span class="p">,</span> <span class="s2">&quot;connections&quot;</span><span class="p">,</span> <span class="s2">&quot;patterns&quot;</span><span class="p">,</span> <span class="s2">&quot;narratives&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;illuminating&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;concepts&quot;</span><span class="p">,</span> <span class="s2">&quot;mysteries&quot;</span><span class="p">,</span> <span class="s2">&quot;paths&quot;</span><span class="p">,</span> <span class="s2">&quot;truths&quot;</span><span class="p">,</span> <span class="s2">&quot;possibilities&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Descriptive compound patterns</span>
+    <span class="n">COMPOUND_PATTERNS</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;deep&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;dive&quot;</span><span class="p">,</span> <span class="s2">&quot;thought&quot;</span><span class="p">,</span> <span class="s2">&quot;reflection&quot;</span><span class="p">,</span> <span class="s2">&quot;analysis&quot;</span><span class="p">,</span> <span class="s2">&quot;exploration&quot;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s2">&quot;bright&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;spark&quot;</span><span class="p">,</span> <span class="s2">&quot;idea&quot;</span><span class="p">,</span> <span class="s2">&quot;insight&quot;</span><span class="p">,</span> <span class="s2">&quot;moment&quot;</span><span class="p">,</span> <span class="s2">&quot;flash&quot;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s2">&quot;fresh&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;perspective&quot;</span><span class="p">,</span> <span class="s2">&quot;approach&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;take&quot;</span><span class="p">,</span> <span class="s2">&quot;view&quot;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;dialogue&quot;</span><span class="p">,</span> <span class="s2">&quot;discussion&quot;</span><span class="p">,</span> <span class="s2">&quot;conversation&quot;</span><span class="p">,</span> <span class="s2">&quot;exchange&quot;</span><span class="p">,</span> <span class="s2">&quot;forum&quot;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s2">&quot;creative&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;flow&quot;</span><span class="p">,</span> <span class="s2">&quot;spark&quot;</span><span class="p">,</span> <span class="s2">&quot;burst&quot;</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">,</span> <span class="s2">&quot;wave&quot;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s2">&quot;mindful&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;moment&quot;</span><span class="p">,</span> <span class="s2">&quot;pause&quot;</span><span class="p">,</span> <span class="s2">&quot;reflection&quot;</span><span class="p">,</span> <span class="s2">&quot;consideration&quot;</span><span class="p">,</span> <span class="s2">&quot;thought&quot;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="s2">&quot;collaborative&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;effort&quot;</span><span class="p">,</span> <span class="s2">&quot;venture&quot;</span><span class="p">,</span> <span class="s2">&quot;journey&quot;</span><span class="p">,</span> <span class="s2">&quot;exploration&quot;</span><span class="p">,</span> <span class="s2">&quot;creation&quot;</span><span class="p">]),</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_simple_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a simple adjective-noun combination for a thread name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Name like &quot;thoughtful-dialogue&quot; or &quot;creative-exploration&quot;.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; AIThreadNameGenerator().generate_simple_name()</span>
+<span class="sd">            &#39;creative-exploration&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">adj</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ADJECTIVES</span><span class="p">)</span>
+        <span class="n">noun</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NOUNS</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">adj</span><span class="si">}{</span><span class="n">separator</span><span class="si">}{</span><span class="n">noun</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_action_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate an action-based thread name for a more dynamic feel.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Name like &quot;exploring-ideas&quot; or &quot;building-understanding&quot;.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; AIThreadNameGenerator().generate_action_name()</span>
+<span class="sd">            &#39;building-connections&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ACTION_PATTERNS</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ACTION_PATTERNS</span><span class="p">[</span><span class="n">action</span><span class="p">])</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">action</span><span class="si">}{</span><span class="n">separator</span><span class="si">}{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_compound_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a compound descriptive thread name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Name like &quot;deep-dive&quot; or &quot;bright-spark&quot;.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; AIThreadNameGenerator().generate_compound_name()</span>
+<span class="sd">            &#39;deep-reflection&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">base</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">COMPOUND_PATTERNS</span><span class="p">)</span>
+        <span class="n">complement</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base</span><span class="si">}{</span><span class="n">separator</span><span class="si">}{</span><span class="n">complement</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a meaningful thread name using random pattern selection.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: A meaningful thread name from various patterns.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; AIThreadNameGenerator().generate_name()</span>
+<span class="sd">            &#39;engaging-discussion&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Randomly choose between different naming patterns</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;simple&quot;</span><span class="p">,</span> <span class="s2">&quot;action&quot;</span><span class="p">,</span> <span class="s2">&quot;compound&quot;</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">pattern</span> <span class="o">==</span> <span class="s2">&quot;simple&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_simple_name</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pattern</span> <span class="o">==</span> <span class="s2">&quot;action&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_action_name</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+        <span class="c1"># compound</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_compound_name</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+<h4 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator-attributes">Attributes<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator-attributes" class="headerlink" title="Permanent link">&para;</a></h4>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ACTION_PATTERNS" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">ACTION_PATTERNS</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ACTION_PATTERNS" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">ACTION_PATTERNS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;exploring&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ideas&#39;</span><span class="p">,</span> <span class="s1">&#39;concepts&#39;</span><span class="p">,</span> <span class="s1">&#39;possibilities&#39;</span><span class="p">,</span> <span class="s1">&#39;mysteries&#39;</span><span class="p">,</span> <span class="s1">&#39;frontiers&#39;</span><span class="p">,</span> <span class="s1">&#39;depths&#39;</span><span class="p">],</span> <span class="s1">&#39;building&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;solutions&#39;</span><span class="p">,</span> <span class="s1">&#39;understanding&#39;</span><span class="p">,</span> <span class="s1">&#39;connections&#39;</span><span class="p">,</span> <span class="s1">&#39;frameworks&#39;</span><span class="p">,</span> <span class="s1">&#39;bridges&#39;</span><span class="p">],</span> <span class="s1">&#39;discovering&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;insights&#39;</span><span class="p">,</span> <span class="s1">&#39;patterns&#39;</span><span class="p">,</span> <span class="s1">&#39;answers&#39;</span><span class="p">,</span> <span class="s1">&#39;truths&#39;</span><span class="p">,</span> <span class="s1">&#39;secrets&#39;</span><span class="p">,</span> <span class="s1">&#39;wisdom&#39;</span><span class="p">],</span> <span class="s1">&#39;crafting&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;responses&#39;</span><span class="p">,</span> <span class="s1">&#39;solutions&#39;</span><span class="p">,</span> <span class="s1">&#39;stories&#39;</span><span class="p">,</span> <span class="s1">&#39;strategies&#39;</span><span class="p">,</span> <span class="s1">&#39;experiences&#39;</span><span class="p">],</span> <span class="s1">&#39;navigating&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;challenges&#39;</span><span class="p">,</span> <span class="s1">&#39;questions&#39;</span><span class="p">,</span> <span class="s1">&#39;complexities&#39;</span><span class="p">,</span> <span class="s1">&#39;territories&#39;</span><span class="p">,</span> <span class="s1">&#39;paths&#39;</span><span class="p">],</span> <span class="s1">&#39;unlocking&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;potential&#39;</span><span class="p">,</span> <span class="s1">&#39;mysteries&#39;</span><span class="p">,</span> <span class="s1">&#39;possibilities&#39;</span><span class="p">,</span> <span class="s1">&#39;creativity&#39;</span><span class="p">,</span> <span class="s1">&#39;knowledge&#39;</span><span class="p">],</span> <span class="s1">&#39;weaving&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ideas&#39;</span><span class="p">,</span> <span class="s1">&#39;stories&#39;</span><span class="p">,</span> <span class="s1">&#39;connections&#39;</span><span class="p">,</span> <span class="s1">&#39;patterns&#39;</span><span class="p">,</span> <span class="s1">&#39;narratives&#39;</span><span class="p">],</span> <span class="s1">&#39;illuminating&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;concepts&#39;</span><span class="p">,</span> <span class="s1">&#39;mysteries&#39;</span><span class="p">,</span> <span class="s1">&#39;paths&#39;</span><span class="p">,</span> <span class="s1">&#39;truths&#39;</span><span class="p">,</span> <span class="s1">&#39;possibilities&#39;</span><span class="p">]}</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ADJECTIVES" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">ADJECTIVES</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.ADJECTIVES" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">ADJECTIVES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;thoughtful&#39;</span><span class="p">,</span> <span class="s1">&#39;insightful&#39;</span><span class="p">,</span> <span class="s1">&#39;analytical&#39;</span><span class="p">,</span> <span class="s1">&#39;logical&#39;</span><span class="p">,</span> <span class="s1">&#39;strategic&#39;</span><span class="p">,</span> <span class="s1">&#39;methodical&#39;</span><span class="p">,</span> <span class="s1">&#39;systematic&#39;</span><span class="p">,</span> <span class="s1">&#39;comprehensive&#39;</span><span class="p">,</span> <span class="s1">&#39;detailed&#39;</span><span class="p">,</span> <span class="s1">&#39;precise&#39;</span><span class="p">,</span> <span class="s1">&#39;creative&#39;</span><span class="p">,</span> <span class="s1">&#39;imaginative&#39;</span><span class="p">,</span> <span class="s1">&#39;innovative&#39;</span><span class="p">,</span> <span class="s1">&#39;artistic&#39;</span><span class="p">,</span> <span class="s1">&#39;expressive&#39;</span><span class="p">,</span> <span class="s1">&#39;original&#39;</span><span class="p">,</span> <span class="s1">&#39;inventive&#39;</span><span class="p">,</span> <span class="s1">&#39;inspired&#39;</span><span class="p">,</span> <span class="s1">&#39;visionary&#39;</span><span class="p">,</span> <span class="s1">&#39;whimsical&#39;</span><span class="p">,</span> <span class="s1">&#39;engaging&#39;</span><span class="p">,</span> <span class="s1">&#39;collaborative&#39;</span><span class="p">,</span> <span class="s1">&#39;meaningful&#39;</span><span class="p">,</span> <span class="s1">&#39;productive&#39;</span><span class="p">,</span> <span class="s1">&#39;harmonious&#39;</span><span class="p">,</span> <span class="s1">&#39;enlightening&#39;</span><span class="p">,</span> <span class="s1">&#39;empathetic&#39;</span><span class="p">,</span> <span class="s1">&#39;supportive&#39;</span><span class="p">,</span> <span class="s1">&#39;encouraging&#39;</span><span class="p">,</span> <span class="s1">&#39;uplifting&#39;</span><span class="p">,</span> <span class="s1">&#39;dynamic&#39;</span><span class="p">,</span> <span class="s1">&#39;energetic&#39;</span><span class="p">,</span> <span class="s1">&#39;vibrant&#39;</span><span class="p">,</span> <span class="s1">&#39;lively&#39;</span><span class="p">,</span> <span class="s1">&#39;spirited&#39;</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="s1">&#39;flowing&#39;</span><span class="p">,</span> <span class="s1">&#39;adaptive&#39;</span><span class="p">,</span> <span class="s1">&#39;responsive&#39;</span><span class="p">,</span> <span class="s1">&#39;interactive&#39;</span><span class="p">,</span> <span class="s1">&#39;focused&#39;</span><span class="p">,</span> <span class="s1">&#39;dedicated&#39;</span><span class="p">,</span> <span class="s1">&#39;thorough&#39;</span><span class="p">,</span> <span class="s1">&#39;meticulous&#39;</span><span class="p">,</span> <span class="s1">&#39;careful&#39;</span><span class="p">,</span> <span class="s1">&#39;patient&#39;</span><span class="p">,</span> <span class="s1">&#39;persistent&#39;</span><span class="p">,</span> <span class="s1">&#39;resilient&#39;</span><span class="p">,</span> <span class="s1">&#39;determined&#39;</span><span class="p">,</span> <span class="s1">&#39;ambitious&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.COMPOUND_PATTERNS" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">COMPOUND_PATTERNS</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.COMPOUND_PATTERNS" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">COMPOUND_PATTERNS</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;deep&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;dive&#39;</span><span class="p">,</span> <span class="s1">&#39;thought&#39;</span><span class="p">,</span> <span class="s1">&#39;reflection&#39;</span><span class="p">,</span> <span class="s1">&#39;analysis&#39;</span><span class="p">,</span> <span class="s1">&#39;exploration&#39;</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;bright&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;spark&#39;</span><span class="p">,</span> <span class="s1">&#39;idea&#39;</span><span class="p">,</span> <span class="s1">&#39;insight&#39;</span><span class="p">,</span> <span class="s1">&#39;moment&#39;</span><span class="p">,</span> <span class="s1">&#39;flash&#39;</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;fresh&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;perspective&#39;</span><span class="p">,</span> <span class="s1">&#39;approach&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;take&#39;</span><span class="p">,</span> <span class="s1">&#39;view&#39;</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;dialogue&#39;</span><span class="p">,</span> <span class="s1">&#39;discussion&#39;</span><span class="p">,</span> <span class="s1">&#39;conversation&#39;</span><span class="p">,</span> <span class="s1">&#39;exchange&#39;</span><span class="p">,</span> <span class="s1">&#39;forum&#39;</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;creative&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;flow&#39;</span><span class="p">,</span> <span class="s1">&#39;spark&#39;</span><span class="p">,</span> <span class="s1">&#39;burst&#39;</span><span class="p">,</span> <span class="s1">&#39;stream&#39;</span><span class="p">,</span> <span class="s1">&#39;wave&#39;</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;mindful&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;moment&#39;</span><span class="p">,</span> <span class="s1">&#39;pause&#39;</span><span class="p">,</span> <span class="s1">&#39;reflection&#39;</span><span class="p">,</span> <span class="s1">&#39;consideration&#39;</span><span class="p">,</span> <span class="s1">&#39;thought&#39;</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;collaborative&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;effort&#39;</span><span class="p">,</span> <span class="s1">&#39;venture&#39;</span><span class="p">,</span> <span class="s1">&#39;journey&#39;</span><span class="p">,</span> <span class="s1">&#39;exploration&#39;</span><span class="p">,</span> <span class="s1">&#39;creation&#39;</span><span class="p">])]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.NOUNS" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">NOUNS</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.NOUNS" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">NOUNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dialogue&#39;</span><span class="p">,</span> <span class="s1">&#39;conversation&#39;</span><span class="p">,</span> <span class="s1">&#39;discussion&#39;</span><span class="p">,</span> <span class="s1">&#39;exchange&#39;</span><span class="p">,</span> <span class="s1">&#39;chat&#39;</span><span class="p">,</span> <span class="s1">&#39;consultation&#39;</span><span class="p">,</span> <span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="s1">&#39;meeting&#39;</span><span class="p">,</span> <span class="s1">&#39;interaction&#39;</span><span class="p">,</span> <span class="s1">&#39;communication&#39;</span><span class="p">,</span> <span class="s1">&#39;journey&#39;</span><span class="p">,</span> <span class="s1">&#39;exploration&#39;</span><span class="p">,</span> <span class="s1">&#39;adventure&#39;</span><span class="p">,</span> <span class="s1">&#39;quest&#39;</span><span class="p">,</span> <span class="s1">&#39;voyage&#39;</span><span class="p">,</span> <span class="s1">&#39;expedition&#39;</span><span class="p">,</span> <span class="s1">&#39;discovery&#39;</span><span class="p">,</span> <span class="s1">&#39;investigation&#39;</span><span class="p">,</span> <span class="s1">&#39;research&#39;</span><span class="p">,</span> <span class="s1">&#39;study&#39;</span><span class="p">,</span> <span class="s1">&#39;insight&#39;</span><span class="p">,</span> <span class="s1">&#39;vision&#39;</span><span class="p">,</span> <span class="s1">&#39;perspective&#39;</span><span class="p">,</span> <span class="s1">&#39;understanding&#39;</span><span class="p">,</span> <span class="s1">&#39;wisdom&#39;</span><span class="p">,</span> <span class="s1">&#39;knowledge&#39;</span><span class="p">,</span> <span class="s1">&#39;learning&#39;</span><span class="p">,</span> <span class="s1">&#39;growth&#39;</span><span class="p">,</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span> <span class="s1">&#39;progress&#39;</span><span class="p">,</span> <span class="s1">&#39;solution&#39;</span><span class="p">,</span> <span class="s1">&#39;approach&#39;</span><span class="p">,</span> <span class="s1">&#39;strategy&#39;</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;framework&#39;</span><span class="p">,</span> <span class="s1">&#39;plan&#39;</span><span class="p">,</span> <span class="s1">&#39;blueprint&#39;</span><span class="p">,</span> <span class="s1">&#39;pathway&#39;</span><span class="p">,</span> <span class="s1">&#39;route&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;canvas&#39;</span><span class="p">,</span> <span class="s1">&#39;story&#39;</span><span class="p">,</span> <span class="s1">&#39;narrative&#39;</span><span class="p">,</span> <span class="s1">&#39;symphony&#39;</span><span class="p">,</span> <span class="s1">&#39;composition&#39;</span><span class="p">,</span> <span class="s1">&#39;creation&#39;</span><span class="p">,</span> <span class="s1">&#39;masterpiece&#39;</span><span class="p">,</span> <span class="s1">&#39;design&#39;</span><span class="p">,</span> <span class="s1">&#39;pattern&#39;</span><span class="p">,</span> <span class="s1">&#39;concept&#39;</span><span class="p">,</span> <span class="s1">&#39;partnership&#39;</span><span class="p">,</span> <span class="s1">&#39;collaboration&#39;</span><span class="p">,</span> <span class="s1">&#39;alliance&#39;</span><span class="p">,</span> <span class="s1">&#39;connection&#39;</span><span class="p">,</span> <span class="s1">&#39;bond&#39;</span><span class="p">,</span> <span class="s1">&#39;synergy&#39;</span><span class="p">,</span> <span class="s1">&#39;harmony&#39;</span><span class="p">,</span> <span class="s1">&#39;unity&#39;</span><span class="p">,</span> <span class="s1">&#39;cooperation&#39;</span><span class="p">,</span> <span class="s1">&#39;teamwork&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+<h4 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator-functions">Functions<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator-functions" class="headerlink" title="Permanent link">&para;</a></h4>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">generate_action_name</span>
+
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">generate_action_name</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Generate an action-based thread name for a more dynamic feel.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name(separator)" class="doc doc-heading doc-heading-parameter">                  <code>separator</code>
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_action_name(separator)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>String to separate words (default: "-").</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;-&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name like "exploring-ideas" or "building-understanding".</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>AIThreadNameGenerator().generate_action_name()
+'building-connections'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>pyagenity/utils/thread_name_generator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_action_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate an action-based thread name for a more dynamic feel.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Name like &quot;exploring-ideas&quot; or &quot;building-understanding&quot;.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; AIThreadNameGenerator().generate_action_name()</span>
+<span class="sd">        &#39;building-connections&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ACTION_PATTERNS</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ACTION_PATTERNS</span><span class="p">[</span><span class="n">action</span><span class="p">])</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">action</span><span class="si">}{</span><span class="n">separator</span><span class="si">}{</span><span class="n">target</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">generate_compound_name</span>
+
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">generate_compound_name</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Generate a compound descriptive thread name.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name(separator)" class="doc doc-heading doc-heading-parameter">                  <code>separator</code>
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_compound_name(separator)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>String to separate words (default: "-").</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;-&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name like "deep-dive" or "bright-spark".</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>AIThreadNameGenerator().generate_compound_name()
+'deep-reflection'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>pyagenity/utils/thread_name_generator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_compound_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a compound descriptive thread name.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Name like &quot;deep-dive&quot; or &quot;bright-spark&quot;.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; AIThreadNameGenerator().generate_compound_name()</span>
+<span class="sd">        &#39;deep-reflection&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">COMPOUND_PATTERNS</span><span class="p">)</span>
+    <span class="n">complement</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base</span><span class="si">}{</span><span class="n">separator</span><span class="si">}{</span><span class="n">complement</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">generate_name</span>
+
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">generate_name</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Generate a meaningful thread name using random pattern selection.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name(separator)" class="doc doc-heading doc-heading-parameter">                  <code>separator</code>
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_name(separator)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>String to separate words (default: "-").</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;-&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A meaningful thread name from various patterns.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>AIThreadNameGenerator().generate_name()
+'engaging-discussion'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>pyagenity/utils/thread_name_generator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a meaningful thread name using random pattern selection.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A meaningful thread name from various patterns.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; AIThreadNameGenerator().generate_name()</span>
+<span class="sd">        &#39;engaging-discussion&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Randomly choose between different naming patterns</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;simple&quot;</span><span class="p">,</span> <span class="s2">&quot;action&quot;</span><span class="p">,</span> <span class="s2">&quot;compound&quot;</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">pattern</span> <span class="o">==</span> <span class="s2">&quot;simple&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_simple_name</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pattern</span> <span class="o">==</span> <span class="s2">&quot;action&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_action_name</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+    <span class="c1"># compound</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_compound_name</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">generate_simple_name</span>
+
+
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">generate_simple_name</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Generate a simple adjective-noun combination for a thread name.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name(separator)" class="doc doc-heading doc-heading-parameter">                  <code>separator</code>
+<a href="#pyagenity.utils.thread_name_generator.AIThreadNameGenerator.generate_simple_name(separator)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>String to separate words (default: "-").</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;-&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name like "thoughtful-dialogue" or "creative-exploration".</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>AIThreadNameGenerator().generate_simple_name()
+'creative-exploration'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>pyagenity/utils/thread_name_generator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_simple_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a simple adjective-noun combination for a thread name.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Name like &quot;thoughtful-dialogue&quot; or &quot;creative-exploration&quot;.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; AIThreadNameGenerator().generate_simple_name()</span>
+<span class="sd">        &#39;creative-exploration&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">adj</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ADJECTIVES</span><span class="p">)</span>
+    <span class="n">noun</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NOUNS</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">adj</span><span class="si">}{</span><span class="n">separator</span><span class="si">}{</span><span class="n">noun</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+<h2 id="pyagenity.utils.thread_name_generator-functions">Functions<a href="#pyagenity.utils.thread_name_generator-functions" class="headerlink" title="Permanent link">&para;</a></h2>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pyagenity.utils.thread_name_generator.generate_dummy_thread_name" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <span class="doc doc-object-name doc-function-name">generate_dummy_thread_name</span>
+
+
+<a href="#pyagenity.utils.thread_name_generator.generate_dummy_thread_name" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">generate_dummy_thread_name</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Generate a meaningful English name for an AI chat thread.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h4 id="pyagenity.utils.thread_name_generator.generate_dummy_thread_name(separator)" class="doc doc-heading doc-heading-parameter">                  <code>separator</code>
+<a href="#pyagenity.utils.thread_name_generator.generate_dummy_thread_name(separator)" class="headerlink" title="Permanent link">&para;</a></h4>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>String to separate words (default: "-").</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;-&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A meaningful thread name like 'thoughtful-dialogue', 'exploring-ideas', or 'deep-dive'.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <blockquote>
+<blockquote>
+<blockquote>
+<p>generate_dummy_thread_name()
+'creative-exploration'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>pyagenity/utils/thread_name_generator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_dummy_thread_name</span><span class="p">(</span><span class="n">separator</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a meaningful English name for an AI chat thread.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        separator (str): String to separate words (default: &quot;-&quot;).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A meaningful thread name like &#39;thoughtful-dialogue&#39;, &#39;exploring-ideas&#39;, or &#39;deep-dive&#39;.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; generate_dummy_thread_name()</span>
+<span class="sd">        &#39;creative-exploration&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">generator</span> <span class="o">=</span> <span class="n">AIThreadNameGenerator</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">generator</span><span class="o">.</span><span class="n">generate_name</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.pagination", "navigation.goto_top", "navigation.path", "navigation.tabs", "navigation.top", "search-suggest", "search.highlight", "search.share", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

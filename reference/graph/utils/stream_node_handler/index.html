@@ -1,0 +1,5756 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A lightweight Python framework for building intelligent agents and multi-agent workflows.">
+      
+      
+      
+        <link rel="canonical" href="https://iamsdt.github.io/pyagenity/reference/graph/utils/stream_node_handler/">
+      
+      
+        <link rel="prev" href="../stream_handler/">
+      
+      
+        <link rel="next" href="../stream_utils/">
+      
+      
+      <link rel="icon" href="../../../../None">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Stream node handler - PyAgenity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pyagenity.graph.utils.stream_node_handler" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="PyAgenity" class="md-header__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyAgenity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Stream node handler
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  PyAgenity
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Concept/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Concept
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="PyAgenity" class="md-nav__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PyAgenity
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../Concept/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Concept
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concept
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/Callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks: Interception and Flow Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/Command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Commands: Combining State Updates with Control Flow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/Threadname/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threadname
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dependency Injection in PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publisher: Real-time Agent Observability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../Concept/context/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Context
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Context
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/context/checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer: The Agent's Session Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/context/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Messages: The Lifeblood of Agent Communication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/context/state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent State: The Mind of Your Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/context/store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store: The Agent's Knowledge Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../Concept/graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/graph/Config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/graph/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Patterns &amp; Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/graph/control_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Flow &amp; Edges
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/graph/execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution &amp; Streaming Runtime
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/graph/human-in-the-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human-in-the-Loop (HITL) &amp; Interrupts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/graph/nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nodes &amp; Return Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Concept/graph/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools &amp; Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../Tutorial/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/long_term_memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Long-Term Memory with Mem0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan-Act-Reflect Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QdrantStore Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG (Retrieval-Augmented Generation) with PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../Tutorial/react/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/react/01-basic-react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic React Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/react/02-dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Dependency Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/react/03-mcp-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Model Context Protocol (MCP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Tutorial/react/04-streaming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Streaming Responses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../adapters/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Adapters
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Adapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../adapters/llm/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Llm
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_1" id="__nav_4_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Llm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../adapters/llm/base_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../adapters/llm/litellm_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Litellm converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../adapters/llm/model_response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../adapters/tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../adapters/tools/composio_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Composio adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../adapters/tools/langchain_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Langchain adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../checkpointer/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Checkpointer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../checkpointer/base_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../checkpointer/in_memory_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    In memory checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../checkpointer/pg_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pg checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../exceptions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Exceptions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exceptions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../exceptions/graph_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../exceptions/node_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../exceptions/recursion_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recursion error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../exceptions/storage_exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Storage exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compiled_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Compiled graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Edge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    State graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tool_node/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tool node
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tool node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool_node/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool_node/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool_node/deps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool_node/executors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Executors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tool_node/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handler_mixins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handler mixins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invoke_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invoke_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Stream node handler
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream node handler
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      stream_node_handler
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      logger
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      StreamNodeHandler
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="StreamNodeHandler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.func" class="md-nav__link">
+    <span class="md-ellipsis">
+      func
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.name" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="__init__">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__(name)" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__(func)" class="md-nav__link">
+    <span class="md-ellipsis">
+      func
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      stream
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(config)" class="md-nav__link">
+    <span class="md-ellipsis">
+      config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(state)" class="md-nav__link">
+    <span class="md-ellipsis">
+      state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(callback_mgr)" class="md-nav__link">
+    <span class="md-ellipsis">
+      callback_mgr
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../prebuilt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Prebuilt
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Prebuilt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../prebuilt/agent/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Agent
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5_1" id="__nav_4_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Agent
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/branch_join/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branch join
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/deep_research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deep research
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/guarded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guarded
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/map_reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map reduce
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan act reflect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/sequential/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sequential
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/supervisor_team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor team
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prebuilt/agent/swarm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Swarm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../publisher/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Publisher
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Publisher
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../publisher/base_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../publisher/console_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Console publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../publisher/events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Events
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../publisher/kafka_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kafka publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../publisher/publish/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publish
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../publisher/rabbitmq_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rabbitmq publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../publisher/redis_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redis publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../state/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    State
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            State
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../state/agent_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../state/base_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base context
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../state/execution_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../state/message_context_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message context manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../store/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Store
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Store
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../store/base_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../store/mem0_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mem0 store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../store/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Qdrant store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../store/store_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../store/embedding/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Embedding
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_5" id="__nav_4_8_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            Embedding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../store/embedding/base_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../store/embedding/openai_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Openai embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../utils/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/background_task_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background task manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/callable_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callable utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/reducers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reducers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/thread_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/thread_name_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread name generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      stream_node_handler
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      logger
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      StreamNodeHandler
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="StreamNodeHandler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.func" class="md-nav__link">
+    <span class="md-ellipsis">
+      func
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.name" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="__init__">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__(name)" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__(func)" class="md-nav__link">
+    <span class="md-ellipsis">
+      func
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      stream
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(config)" class="md-nav__link">
+    <span class="md-ellipsis">
+      config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(state)" class="md-nav__link">
+    <span class="md-ellipsis">
+      state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(callback_mgr)" class="md-nav__link">
+    <span class="md-ellipsis">
+      callback_mgr
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyagenity.graph.utils.stream_node_handler-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Stream node handler</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="pyagenity.graph.utils.stream_node_handler"></a>
+    <div class="doc doc-contents first">
+
+        <p>Streaming node handler for PyAgenity graph workflows.</p>
+<p>This module provides the StreamNodeHandler class, which manages the execution of graph nodes
+that support streaming output. It handles both regular function nodes and ToolNode instances,
+enabling incremental result processing, dependency injection, callback management, and
+event publishing.</p>
+<p>StreamNodeHandler is a key component for enabling real-time, chunked, or incremental responses
+in agent workflows, supporting both synchronous and asynchronous execution patterns.</p>
+
+
+
+
+
+
+
+
+
+
+<p><span class="doc-section-title">Classes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            StreamNodeHandler (pyagenity.graph.utils.stream_node_handler.StreamNodeHandler)" href="../../../#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler">StreamNodeHandler</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Handles streaming execution for graph nodes in PyAgenity workflows.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            logger
+
+
+  
+      module-attribute
+   (pyagenity.graph.utils.stream_node_handler.logger)" href="../../../#pyagenity.graph.utils.stream_node_handler.logger">logger</a></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+<h2 id="pyagenity.graph.utils.stream_node_handler-attributes">Attributes<a href="#pyagenity.graph.utils.stream_node_handler-attributes" class="headerlink" title="Permanent link">&para;</a></h2>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="pyagenity.graph.utils.stream_node_handler.logger" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">logger</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#pyagenity.graph.utils.stream_node_handler.logger" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<h2 id="pyagenity.graph.utils.stream_node_handler-classes">Classes<a href="#pyagenity.graph.utils.stream_node_handler-classes" class="headerlink" title="Permanent link">&para;</a></h2>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">StreamNodeHandler</span>
+
+
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="            BaseLoggingMixin (pyagenity.graph.utils.handler_mixins.BaseLoggingMixin)" href="../../../#pyagenity.graph.utils.handler_mixins.BaseLoggingMixin">BaseLoggingMixin</a></code></p>
+
+
+        <p>Handles streaming execution for graph nodes in PyAgenity workflows.</p>
+<p>StreamNodeHandler manages the execution of nodes that can produce streaming output,
+including both regular function nodes and ToolNode instances. It supports dependency
+injection, callback management, event publishing, and incremental result processing.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            name
+
+
+  
+      instance-attribute
+   (pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.name)" href="../../../#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.name">name</a></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique identifier for the node within the graph.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="            func
+
+
+  
+      instance-attribute
+   (pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.func)" href="../../../#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.func">func</a></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The function or ToolNode to execute. Determines streaming behavior.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="n">handler</span> <span class="o">=</span> <span class="n">StreamNodeHandler</span><span class="p">(</span><span class="s2">&quot;process&quot;</span><span class="p">,</span> <span class="n">process_function</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">handler</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+<p><span class="doc-section-title">Methods:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="            __init__ (pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__)" href="../../../#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__">__init__</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Initialize a new StreamNodeHandler instance.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="            stream
+
+
+  
+      async
+   (pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream)" href="../../../#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream">stream</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Execute the node function with streaming output and callback support.</p>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>pyagenity/graph/utils/stream_node_handler.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">StreamNodeHandler</span><span class="p">(</span><span class="n">BaseLoggingMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles streaming execution for graph nodes in PyAgenity workflows.</span>
+
+<span class="sd">    StreamNodeHandler manages the execution of nodes that can produce streaming output,</span>
+<span class="sd">    including both regular function nodes and ToolNode instances. It supports dependency</span>
+<span class="sd">    injection, callback management, event publishing, and incremental result processing.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name: Unique identifier for the node within the graph.</span>
+<span class="sd">        func: The function or ToolNode to execute. Determines streaming behavior.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ```python</span>
+<span class="sd">        handler = StreamNodeHandler(&quot;process&quot;, process_function)</span>
+<span class="sd">        async for chunk in handler.stream(config, state):</span>
+<span class="sd">            print(chunk)</span>
+<span class="sd">        ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">func</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="s2">&quot;ToolNode&quot;</span><span class="p">],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a new StreamNodeHandler instance.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name: Unique identifier for the node within the graph.</span>
+<span class="sd">            func: The function or ToolNode to execute. Determines streaming behavior.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_handle_single_tool</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">tool_call</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">Message</span><span class="p">]:</span>
+        <span class="n">function_name</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">function_args</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">tool_call</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;arguments&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="n">tool_call_id</span> <span class="o">=</span> <span class="n">tool_call</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; executing tool &#39;</span><span class="si">%s</span><span class="s2">&#39; with </span><span class="si">%d</span><span class="s2"> arguments&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">function_name</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">function_args</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Tool arguments: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">function_args</span><span class="p">)</span>
+
+        <span class="c1"># Execute the tool function with injectable parameters</span>
+        <span class="n">tool_result_gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span>  <span class="c1"># type: ignore</span>
+            <span class="n">function_name</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
+            <span class="n">function_args</span><span class="p">,</span>
+            <span class="n">tool_call_id</span><span class="o">=</span><span class="n">tool_call_id</span><span class="p">,</span>
+            <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
+            <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; tool execution completed successfully&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">async</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">tool_result_gen</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">Message</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">result</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_call_tools</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">last_message</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="s2">&quot;AgentState&quot;</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">Message</span><span class="p">]:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; calling tools from message&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="n">last_message</span><span class="p">,</span> <span class="s2">&quot;tools_calls&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span>
+            <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="p">):</span>
+            <span class="c1"># Execute tool calls</span>
+            <span class="k">for</span> <span class="n">tool_call</span> <span class="ow">in</span> <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">:</span>
+                <span class="n">result_gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_single_tool</span><span class="p">(</span>
+                    <span class="n">tool_call</span><span class="p">,</span>
+                    <span class="n">state</span><span class="p">,</span>
+                    <span class="n">config</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">async</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">result_gen</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">Message</span><span class="p">):</span>
+                        <span class="k">yield</span> <span class="n">result</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># No tool calls to execute, return available tools</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39;: No tool calls to execute&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">NodeError</span><span class="p">(</span><span class="s2">&quot;No tool calls to execute&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_input_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="s2">&quot;AgentState&quot;</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>  <span class="c1"># type: ignore Tool node won&#39;t come here</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">default_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">,</span>
+            <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">config</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># # Get injectable parameters to determine which ones to exclude from manual passing</span>
+        <span class="c1"># # Prepare function arguments (excluding injectable parameters)</span>
+        <span class="k">for</span> <span class="n">param_name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># Skip *args/**kwargs</span>
+            <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">kind</span> <span class="ow">in</span> <span class="p">(</span>
+                <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">VAR_POSITIONAL</span><span class="p">,</span>
+                <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">VAR_KEYWORD</span><span class="p">,</span>
+            <span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># check its state, config</span>
+            <span class="k">if</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;config&quot;</span><span class="p">]:</span>
+                <span class="n">input_data</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_data</span><span class="p">[</span><span class="n">param_name</span><span class="p">]</span>
+            <span class="c1"># Include regular function arguments</span>
+            <span class="k">elif</span> <span class="n">param</span><span class="o">.</span><span class="n">default</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Missing required parameter &#39;</span><span class="si">{</span><span class="n">param_name</span><span class="si">}</span><span class="s2">&#39; for function &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">input_data</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_call_normal_node</span><span class="p">(</span>  <span class="c1"># noqa: PLR0912, PLR0915</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="s2">&quot;AgentState&quot;</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">callback_mgr</span><span class="p">:</span> <span class="n">CallbackManager</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">Message</span><span class="p">]:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; calling normal function&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">Message</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; is a regular function, executing with callbacks&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># This is a regular function - likely AI function</span>
+        <span class="c1"># Create callback context for AI invocation</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="n">CallbackContext</span><span class="p">(</span>
+            <span class="n">invocation_type</span><span class="o">=</span><span class="n">InvocationType</span><span class="o">.</span><span class="n">AI</span><span class="p">,</span>
+            <span class="n">node_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">function_name</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)),</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">config</span><span class="p">},</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Execute before_invoke callbacks</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_input_data</span><span class="p">(</span>
+            <span class="n">state</span><span class="p">,</span>
+            <span class="n">config</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="n">event</span> <span class="o">=</span> <span class="n">EventModel</span><span class="o">.</span><span class="n">default</span><span class="p">(</span>
+            <span class="n">config</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()},</span>
+            <span class="n">event</span><span class="o">=</span><span class="n">Event</span><span class="o">.</span><span class="n">NODE_EXECUTION</span><span class="p">,</span>
+            <span class="n">content_type</span><span class="o">=</span><span class="p">[</span><span class="n">ContentType</span><span class="o">.</span><span class="n">STATE</span><span class="p">],</span>
+            <span class="n">node_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s2">&quot;function_name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)),</span>
+                <span class="s2">&quot;last_message&quot;</span><span class="p">:</span> <span class="n">last_message</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">if</span> <span class="n">last_message</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">publish_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; executing before_invoke callbacks&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="c1"># Execute before_invoke callbacks</span>
+            <span class="n">input_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">callback_mgr</span><span class="o">.</span><span class="n">execute_before_invoke</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; executing function&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">=</span> <span class="n">EventType</span><span class="o">.</span><span class="n">PROGRESS</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;Function execution started&quot;</span>
+            <span class="n">publish_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+            <span class="c1"># Execute the actual function</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_sync_or_async</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
+                <span class="o">**</span><span class="n">input_data</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; function execution completed&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; executing after_invoke callbacks&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="c1"># Execute after_invoke callbacks</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">callback_mgr</span><span class="o">.</span><span class="n">execute_after_invoke</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+            <span class="c1"># Now lets convert the response here only, upstream will be easy to handle</span>
+            <span class="c1">##############################################################################</span>
+            <span class="c1">################### Logics for streaming ##########################</span>
+            <span class="c1">##############################################################################</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Check user sending command or not</span>
+<span class="sd">            if command then we will check its streaming or not</span>
+<span class="sd">            if streaming then we will yield from converter stream</span>
+<span class="sd">            if not streaming then we will convert it and yield end event</span>
+<span class="sd">            if its not command then we will check its streaming or not</span>
+<span class="sd">            if streaming then we will yield from converter stream</span>
+<span class="sd">            if not streaming then we will convert it and yield end event</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="c1"># first check its sync and not streaming</span>
+            <span class="n">next_node</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">final_result</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="c1"># if type of command then we will update it</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">Command</span><span class="p">):</span>
+                <span class="c1"># now check the updated</span>
+                <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">:</span>
+                    <span class="n">final_result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">update</span>
+
+                <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">state</span><span class="p">:</span>
+                    <span class="n">state</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">state</span>
+                    <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">msg</span>
+
+                <span class="n">next_node</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">goto</span>
+
+            <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">check_non_streaming</span><span class="p">(</span><span class="n">final_result</span><span class="p">):</span>
+                <span class="n">new_state</span><span class="p">,</span> <span class="n">messages</span><span class="p">,</span> <span class="n">next_node</span> <span class="o">=</span> <span class="k">await</span> <span class="n">process_node_result</span><span class="p">(</span>
+                    <span class="n">final_result</span><span class="p">,</span>
+                    <span class="n">state</span><span class="p">,</span>
+                    <span class="n">messages</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_state</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">=</span> <span class="n">EventType</span><span class="o">.</span><span class="n">END</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">]</span> <span class="k">if</span> <span class="n">messages</span> <span class="k">else</span> <span class="p">[]</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;next_node&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_node</span>
+                <span class="n">publish_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">m</span>
+
+                <span class="k">yield</span> <span class="p">{</span>
+                    <span class="s2">&quot;is_non_streaming&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                    <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">new_state</span><span class="p">,</span>
+                    <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">messages</span><span class="p">,</span>
+                    <span class="s2">&quot;next_node&quot;</span><span class="p">:</span> <span class="n">next_node</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="k">return</span>  <span class="c1"># done</span>
+
+            <span class="c1"># If the result is a ConverterCall with stream=True, use the converter</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">ModelResponseConverter</span><span class="p">)</span> <span class="ow">and</span> <span class="n">result</span><span class="o">.</span><span class="n">response</span><span class="p">:</span>
+                <span class="n">stream_gen</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span>
+                    <span class="n">config</span><span class="p">,</span>
+                    <span class="n">node_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">meta</span><span class="o">=</span><span class="p">{</span>
+                        <span class="s2">&quot;function_name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="s2">&quot;__name__&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)),</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+                <span class="c1"># this will return event_model or message</span>
+                <span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">stream_gen</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Message</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">delta</span><span class="p">:</span>
+                        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                    <span class="k">yield</span> <span class="n">item</span>
+            <span class="c1"># Things are done, so publish event and yield final response</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">=</span> <span class="n">EventType</span><span class="o">.</span><span class="n">END</span>
+            <span class="k">if</span> <span class="n">messages</span><span class="p">:</span>
+                <span class="n">final_msg</span> <span class="o">=</span> <span class="n">messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">final_msg</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+                <span class="c1"># Populate simple content and structured blocks when available</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">final_msg</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">final_msg</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">final_msg</span><span class="o">.</span><span class="n">content</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">final_msg</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">event</span><span class="o">.</span><span class="n">content_blocks</span> <span class="o">=</span> <span class="n">final_msg</span><span class="o">.</span><span class="n">content</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">content_blocks</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContentType</span><span class="o">.</span><span class="n">MESSAGE</span><span class="p">,</span> <span class="n">ContentType</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
+            <span class="n">publish_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+            <span class="c1"># if user use command and its streaming in that case we need to handle next node also</span>
+            <span class="k">yield</span> <span class="p">{</span>
+                <span class="s2">&quot;is_non_streaming&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">messages</span><span class="p">,</span>
+                <span class="s2">&quot;next_node&quot;</span><span class="p">:</span> <span class="n">next_node</span><span class="p">,</span>
+            <span class="p">}</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; execution failed, executing error callbacks: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span>
+            <span class="p">)</span>
+            <span class="c1"># Execute error callbacks</span>
+            <span class="n">recovery_result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">callback_mgr</span><span class="o">.</span><span class="n">execute_on_error</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">recovery_result</span><span class="p">,</span> <span class="n">Message</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; recovered from error using callback result&quot;</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="c1"># Use recovery result instead of raising the error</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">=</span> <span class="n">EventType</span><span class="o">.</span><span class="n">END</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;Function execution recovered from error&quot;</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recovery_result</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContentType</span><span class="o">.</span><span class="n">MESSAGE</span><span class="p">,</span> <span class="n">ContentType</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
+                <span class="n">publish_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+                <span class="k">yield</span> <span class="n">recovery_result</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Re-raise the original error</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; could not recover from error&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">event_type</span> <span class="o">=</span> <span class="n">EventType</span><span class="o">.</span><span class="n">ERROR</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Function execution failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">ContentType</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span> <span class="n">ContentType</span><span class="o">.</span><span class="n">STATE</span><span class="p">]</span>
+                <span class="n">publish_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+                <span class="k">raise</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+        <span class="n">callback_mgr</span><span class="p">:</span> <span class="n">CallbackManager</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">CallbackManager</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">Message</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the node function with streaming output and callback support.</span>
+
+<span class="sd">        Handles both ToolNode and regular function nodes, yielding incremental results</span>
+<span class="sd">        as they become available. Supports dependency injection, callback management,</span>
+<span class="sd">        and event publishing for monitoring and debugging.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config: Configuration dictionary containing execution context and settings.</span>
+<span class="sd">            state: Current AgentState providing workflow context and shared state.</span>
+<span class="sd">            callback_mgr: Callback manager for pre/post execution hook handling.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            Dictionary objects or Message instances representing incremental outputs</span>
+<span class="sd">            from the node function. The exact type and frequency of yields depends on</span>
+<span class="sd">            the node function&#39;s streaming implementation.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NodeError: If node execution fails or encounters an error.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            ```python</span>
+<span class="sd">            async for chunk in handler.stream(config, state):</span>
+<span class="sd">                print(chunk)</span>
+<span class="sd">            ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Executing node &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; execution with state context size=</span><span class="si">%d</span><span class="s2">, config keys=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">)</span> <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[],</span>
+        <span class="p">)</span>
+
+        <span class="c1"># In this function publishing events not required</span>
+        <span class="c1"># If its tool node, its already handled there, from start to end</span>
+        <span class="c1"># In this class we need to handle normal function calls only</span>
+        <span class="c1"># We will yield events from here only for normal function calls</span>
+        <span class="c1"># ToolNode will yield events from its own stream method</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; is a ToolNode, executing tool calls&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="c1"># This is tool execution - handled separately in ToolNode</span>
+                <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; processing tool calls from last message&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_tools</span><span class="p">(</span>
+                        <span class="n">last_message</span><span class="p">,</span>
+                        <span class="n">state</span><span class="p">,</span>
+                        <span class="n">config</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">item</span>
+                    <span class="c1"># Check if last message has tool calls to execute</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># No context, return available tools</span>
+                    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;No context available for tool execution&quot;</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39;: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="n">NodeError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_normal_node</span><span class="p">(</span>
+                    <span class="n">state</span><span class="p">,</span>
+                    <span class="n">config</span><span class="p">,</span>
+                    <span class="n">callback_mgr</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">item</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; execution completed successfully&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># This is the final catch-all for node execution errors</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; execution failed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">NodeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in node &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">!s}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+<h4 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler-attributes">Attributes<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler-attributes" class="headerlink" title="Permanent link">&para;</a></h4>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.func" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">func</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.func" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.name" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">name</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.name" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+<h4 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler-functions">Functions<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler-functions" class="headerlink" title="Permanent link">&para;</a></h4>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">__init__</span>
+
+
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize a new StreamNodeHandler instance.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__(name)" class="doc doc-heading doc-heading-parameter">                  <code>name</code>
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__(name)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unique identifier for the node within the graph.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__(func)" class="doc doc-heading doc-heading-parameter">                  <code>func</code>
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.__init__(func)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<span title="collections.abc.Callable">Callable</span>, <a class="autorefs autorefs-internal" title="            ToolNode (pyagenity.graph.tool_node.ToolNode)" href="../../../#pyagenity.graph.tool_node.ToolNode">ToolNode</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The function or ToolNode to execute. Determines streaming behavior.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="quote">
+              <summary>Source code in <code>pyagenity/graph/utils/stream_node_handler.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="s2">&quot;ToolNode&quot;</span><span class="p">],</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize a new StreamNodeHandler instance.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name: Unique identifier for the node within the graph.</span>
+<span class="sd">        func: The function or ToolNode to execute. Determines streaming behavior.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">stream</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream" class="headerlink" title="Permanent link">&para;</a></h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">stream</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">callback_mgr</span><span class="o">=</span><span class="n">Inject</span><span class="p">[</span><span class="n">CallbackManager</span><span class="p">])</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Execute the node function with streaming output and callback support.</p>
+<p>Handles both ToolNode and regular function nodes, yielding incremental results
+as they become available. Supports dependency injection, callback management,
+and event publishing for monitoring and debugging.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(config)" class="doc doc-heading doc-heading-parameter">                  <code>config</code>
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(config)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Configuration dictionary containing execution context and settings.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(state)" class="doc doc-heading doc-heading-parameter">                  <code>state</code>
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(state)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            AgentState (pyagenity.state.AgentState)" href="../../../#pyagenity.state.AgentState">AgentState</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Current AgentState providing workflow context and shared state.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+<h6 id="pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(callback_mgr)" class="doc doc-heading doc-heading-parameter">                  <code>callback_mgr</code>
+<a href="#pyagenity.graph.utils.stream_node_handler.StreamNodeHandler.stream(callback_mgr)" class="headerlink" title="Permanent link">&para;</a></h6>            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            CallbackManager (pyagenity.utils.CallbackManager)" href="../../../#pyagenity.utils.CallbackManager">CallbackManager</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Callback manager for pre/post execution hook handling.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="injectq.Inject">Inject</span>[<a class="autorefs autorefs-internal" title="            CallbackManager (pyagenity.utils.CallbackManager)" href="../../../#pyagenity.utils.CallbackManager">CallbackManager</a>]</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Yields:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="collections.abc.AsyncGenerator">AsyncGenerator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>] | <a class="autorefs autorefs-internal" title="            Message (pyagenity.utils.Message)" href="../../../#pyagenity.utils.Message">Message</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary objects or Message instances representing incremental outputs</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="collections.abc.AsyncGenerator">AsyncGenerator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>] | <a class="autorefs autorefs-internal" title="            Message (pyagenity.utils.Message)" href="../../../#pyagenity.utils.Message">Message</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>from the node function. The exact type and frequency of yields depends on</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="collections.abc.AsyncGenerator">AsyncGenerator</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>] | <a class="autorefs autorefs-internal" title="            Message (pyagenity.utils.Message)" href="../../../#pyagenity.utils.Message">Message</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>the node function's streaming implementation.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="            NodeError (pyagenity.exceptions.NodeError)" href="../../../#pyagenity.exceptions.NodeError">NodeError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If node execution fails or encounters an error.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">handler</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>pyagenity/graph/utils/stream_node_handler.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">stream</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+    <span class="n">callback_mgr</span><span class="p">:</span> <span class="n">CallbackManager</span> <span class="o">=</span> <span class="n">Inject</span><span class="p">[</span><span class="n">CallbackManager</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">Message</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the node function with streaming output and callback support.</span>
+
+<span class="sd">    Handles both ToolNode and regular function nodes, yielding incremental results</span>
+<span class="sd">    as they become available. Supports dependency injection, callback management,</span>
+<span class="sd">    and event publishing for monitoring and debugging.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config: Configuration dictionary containing execution context and settings.</span>
+<span class="sd">        state: Current AgentState providing workflow context and shared state.</span>
+<span class="sd">        callback_mgr: Callback manager for pre/post execution hook handling.</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        Dictionary objects or Message instances representing incremental outputs</span>
+<span class="sd">        from the node function. The exact type and frequency of yields depends on</span>
+<span class="sd">        the node function&#39;s streaming implementation.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        NodeError: If node execution fails or encounters an error.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        ```python</span>
+<span class="sd">        async for chunk in handler.stream(config, state):</span>
+<span class="sd">            print(chunk)</span>
+<span class="sd">        ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Executing node &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+        <span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; execution with state context size=</span><span class="si">%d</span><span class="s2">, config keys=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">)</span> <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="p">[],</span>
+    <span class="p">)</span>
+
+    <span class="c1"># In this function publishing events not required</span>
+    <span class="c1"># If its tool node, its already handled there, from start to end</span>
+    <span class="c1"># In this class we need to handle normal function calls only</span>
+    <span class="c1"># We will yield events from here only for normal function calls</span>
+    <span class="c1"># ToolNode will yield events from its own stream method</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; is a ToolNode, executing tool calls&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="c1"># This is tool execution - handled separately in ToolNode</span>
+            <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; processing tool calls from last message&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_tools</span><span class="p">(</span>
+                    <span class="n">last_message</span><span class="p">,</span>
+                    <span class="n">state</span><span class="p">,</span>
+                    <span class="n">config</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">item</span>
+                <span class="c1"># Check if last message has tool calls to execute</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># No context, return available tools</span>
+                <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;No context available for tool execution&quot;</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39;: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">NodeError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_normal_node</span><span class="p">(</span>
+                <span class="n">state</span><span class="p">,</span>
+                <span class="n">config</span><span class="p">,</span>
+                <span class="n">callback_mgr</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">item</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; execution completed successfully&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># This is the final catch-all for node execution errors</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Node &#39;</span><span class="si">%s</span><span class="s2">&#39; execution failed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">NodeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in node &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">!s}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+<h2 id="pyagenity.graph.utils.stream_node_handler-functions">Functions<a href="#pyagenity.graph.utils.stream_node_handler-functions" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.pagination", "navigation.goto_top", "navigation.path", "navigation.tabs", "navigation.top", "search-suggest", "search.highlight", "search.share", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

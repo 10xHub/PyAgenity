@@ -1,0 +1,5374 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A lightweight Python framework for building intelligent agents and multi-agent workflows.">
+      
+      
+      
+        <link rel="canonical" href="https://iamsdt.github.io/pyagenity/Tutorial/react/01-basic-react/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../02-dependency-injection/">
+      
+      
+      <link rel="icon" href="../../../None">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Basic React Patterns - PyAgenity</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-react-patterns" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="PyAgenity" class="md-header__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyAgenity
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic React Patterns
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  PyAgenity
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Concept/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Concept
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="PyAgenity" class="md-nav__button md-logo" aria-label="PyAgenity" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PyAgenity
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Iamsdt/PyAgenity" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Iamsdt/PyAgenity
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Concept/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Concept
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Concept
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/Callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks: Interception and Flow Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/Command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Commands: Combining State Updates with Control Flow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/Threadname/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threadname
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dependency Injection in PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publisher: Real-time Agent Observability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Concept/context/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Context
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Context
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/context/checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer: The Agent's Session Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/context/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Messages: The Lifeblood of Agent Communication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/context/state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent State: The Mind of Your Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/context/store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store: The Agent's Knowledge Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Concept/graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/Config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Patterns &amp; Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/control_flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control Flow &amp; Edges
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution &amp; Streaming Runtime
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/human-in-the-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human-in-the-Loop (HITL) &amp; Interrupts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nodes &amp; Return Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Concept/graph/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools &amp; Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorial
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../long_term_memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Long-Term Memory with Mem0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan-Act-Reflect Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QdrantStore Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG (Retrieval-Augmented Generation) with PyAgenity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            React
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Basic React Patterns
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basic React Patterns
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Learning Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-react-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Understanding the ReAct Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Understanding the ReAct Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-core-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Core Loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-react-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why React Works
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-architecture-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Basic Architecture Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ Basic Architecture Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tools-action-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Tools (Action Layer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-main-agent-reasoning-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Main Agent (Reasoning Layer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-conditional-routing-control-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Conditional Routing (Control Layer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-graph-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Graph Assembly
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-example-weather-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌤️ Complete Example: Weather Agent
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌤️ Complete Example: Weather Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-define-the-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Define the Tool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-the-main-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Create the Main Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-implement-smart-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Implement Smart Routing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-build-the-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Build the Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-run-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Run the Agent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronous-vs-asynchronous-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Synchronous vs Asynchronous Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Synchronous vs Asynchronous Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-simpler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synchronous (Simpler)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tool-design-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Tool Design Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Tool Design Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clear-function-signatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clear Function Signatures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dependency-injection-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Dependency Injection Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-routing-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎛️ Advanced Routing Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎛️ Advanced Routing Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loop-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loop Prevention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-modal-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Modal Routing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-react-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐛 Debugging React Agents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐛 Debugging React Agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-detailed-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Detailed Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      State Inspection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Solutions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Performance Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caching-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching Responses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrent-tool-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concurrent Tool Execution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-variations" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Example Variations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Example Variations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-tool-weather-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Tool Weather Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-recovery-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Recovery Agent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Next Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-topics-to-explore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Topics to Explore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Reference Files
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-dependency-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Dependency Injection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-mcp-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Model Context Protocol (MCP)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-streaming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React Agents with Streaming Responses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/adapters/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Adapters
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Adapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/adapters/llm/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Llm
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_1" id="__nav_4_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Llm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/adapters/llm/base_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/adapters/llm/litellm_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Litellm converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/adapters/llm/model_response_converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model response converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/adapters/tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/adapters/tools/composio_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Composio adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/adapters/tools/langchain_adapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Langchain adapter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/checkpointer/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Checkpointer
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Checkpointer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/checkpointer/base_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/checkpointer/in_memory_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    In memory checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/checkpointer/pg_checkpointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pg checkpointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/exceptions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Exceptions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exceptions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/exceptions/graph_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graph error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/exceptions/node_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/exceptions/recursion_error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recursion error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/exceptions/storage_exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Storage exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/graph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Graph
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Graph
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/compiled_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Compiled graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/edge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Edge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/state_graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    State graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/graph/tool_node/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Tool node
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tool node
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/tool_node/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/tool_node/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/tool_node/deps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/tool_node/executors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Executors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/tool_node/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/graph/utils/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/utils/handler_mixins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handler mixins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/utils/invoke_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/utils/invoke_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invoke node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/utils/stream_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/utils/stream_node_handler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream node handler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/utils/stream_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stream utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/graph/utils/utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/prebuilt/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Prebuilt
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Prebuilt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/prebuilt/agent/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Agent
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5_1" id="__nav_4_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Agent
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/branch_join/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Branch join
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/deep_research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deep research
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/guarded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guarded
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/map_reduce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map reduce
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/plan_act_reflect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plan act reflect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rag
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    React
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/sequential/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sequential
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/supervisor_team/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor team
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/prebuilt/agent/swarm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Swarm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/publisher/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Publisher
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Publisher
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/publisher/base_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/publisher/console_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Console publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/publisher/events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Events
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/publisher/kafka_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kafka publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/publisher/publish/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Publish
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/publisher/rabbitmq_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rabbitmq publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/publisher/redis_publisher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redis publisher
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/state/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    State
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            State
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/state/agent_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/state/base_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base context
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/state/execution_state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Execution state
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/state/message_context_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message context manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/store/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Store
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            Store
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/store/base_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/store/mem0_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mem0 store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/store/qdrant_store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Qdrant store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/store/store_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Store schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/store/embedding/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Embedding
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_5" id="__nav_4_8_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            Embedding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/store/embedding/base_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Base embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/store/embedding/openai_embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Openai embedding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/utils/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/background_task_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background task manager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/callable_utils/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callable utils
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/callbacks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Callbacks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/constants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Constants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/converter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Converter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/id_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Id generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/reducers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reducers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/thread_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread info
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/utils/thread_name_generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Thread name generator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Learning Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-react-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Understanding the ReAct Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧠 Understanding the ReAct Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-core-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Core Loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-react-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why React Works
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-architecture-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Basic Architecture Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ Basic Architecture Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tools-action-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Tools (Action Layer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-main-agent-reasoning-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Main Agent (Reasoning Layer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-conditional-routing-control-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Conditional Routing (Control Layer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-graph-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Graph Assembly
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-example-weather-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌤️ Complete Example: Weather Agent
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌤️ Complete Example: Weather Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-define-the-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Define the Tool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-the-main-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Create the Main Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-implement-smart-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Implement Smart Routing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-build-the-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Build the Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-run-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Run the Agent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronous-vs-asynchronous-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Synchronous vs Asynchronous Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Synchronous vs Asynchronous Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous (Recommended)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-simpler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Synchronous (Simpler)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tool-design-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Tool Design Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Tool Design Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clear-function-signatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clear Function Signatures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dependency-injection-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Dependency Injection Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-routing-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎛️ Advanced Routing Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎛️ Advanced Routing Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loop-prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loop Prevention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-modal-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Modal Routing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-react-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐛 Debugging React Agents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐛 Debugging React Agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-detailed-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Detailed Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      State Inspection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-issues-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Solutions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Performance Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ Performance Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caching-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching Responses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrent-tool-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concurrent Tool Execution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-variations" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Example Variations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Example Variations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-tool-weather-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Tool Weather Agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-recovery-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Recovery Agent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Next Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-topics-to-explore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Topics to Explore
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Reference Files
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="basic-react-patterns">Basic React Patterns<a class="headerlink" href="#basic-react-patterns" title="Permanent link">&para;</a></h1>
+<p>The <strong>ReAct (Reasoning and Acting)</strong> pattern is the cornerstone of intelligent agent design. This tutorial covers the fundamental concepts and implementation patterns using PyAgenity's core components.</p>
+<h2 id="learning-objectives">🎯 Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this tutorial, you'll understand:</p>
+<ul>
+<li>How the ReAct loop works: think → act → observe → repeat</li>
+<li>Building basic React agents with <code>StateGraph</code> and <code>ToolNode</code></li>
+<li>Implementing conditional routing for tool execution</li>
+<li>Synchronous vs asynchronous patterns</li>
+<li>Debugging and optimizing React agents</li>
+</ul>
+<h2 id="understanding-the-react-pattern">🧠 Understanding the ReAct Pattern<a class="headerlink" href="#understanding-the-react-pattern" title="Permanent link">&para;</a></h2>
+<h3 id="the-core-loop">The Core Loop<a class="headerlink" href="#the-core-loop" title="Permanent link">&para;</a></h3>
+<p>React agents follow a simple but powerful pattern:</p>
+<div class="highlight"><pre><span></span><code>User Input → Reasoning → Action (Tool Call) → Observation (Tool Result) → More Reasoning → Final Answer
+</code></pre></div>
+<ol>
+<li><strong>Reasoning</strong>: The LLM analyzes the problem and decides what to do</li>
+<li><strong>Acting</strong>: If needed, the agent calls tools to gather information or perform actions  </li>
+<li><strong>Observing</strong>: The agent processes the tool results</li>
+<li><strong>Iterating</strong>: The cycle repeats until the task is complete</li>
+</ol>
+<h3 id="why-react-works">Why React Works<a class="headerlink" href="#why-react-works" title="Permanent link">&para;</a></h3>
+<p>Traditional LLMs have limitations:
+- ❌ <strong>Knowledge cutoff</strong>: Can't access recent information
+- ❌ <strong>No actions</strong>: Can't interact with external systems<br />
+- ❌ <strong>Static responses</strong>: Can't adapt based on new information</p>
+<p>React agents solve these problems:
+- ✅ <strong>Real-time data</strong>: Tools provide fresh information
+- ✅ <strong>External actions</strong>: Can call APIs, databases, services
+- ✅ <strong>Dynamic adaptation</strong>: Adjusts approach based on results</p>
+<h2 id="basic-architecture-components">🏗️ Basic Architecture Components<a class="headerlink" href="#basic-architecture-components" title="Permanent link">&para;</a></h2>
+<p>A React agent requires these PyAgenity components:</p>
+<h3 id="1-tools-action-layer">1. Tools (Action Layer)<a class="headerlink" href="#1-tools-action-layer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolNode</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get weather for a location.&quot;&quot;&quot;</span>
+    <span class="c1"># In production: call weather API</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;The weather in </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2"> is sunny, 75°F&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">search_web</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Search the web for information.&quot;&quot;&quot;</span> 
+    <span class="c1"># In production: call search API</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Search results for: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">tool_node</span> <span class="o">=</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">get_weather</span><span class="p">,</span> <span class="n">search_web</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="2-main-agent-reasoning-layer">2. Main Agent (Reasoning Layer)<a class="headerlink" href="#2-main-agent-reasoning-layer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">acompletion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The reasoning component that decides when to use tools.&quot;&quot;&quot;</span>
+
+    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;You are a helpful assistant. Use tools when needed.&quot;</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="n">convert_messages</span><span class="p">(</span>
+        <span class="n">system_prompts</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">}],</span>
+        <span class="n">state</span><span class="o">=</span><span class="n">state</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Check if we just got tool results  </span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span> <span class="ow">and</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">:</span>
+        <span class="c1"># Final response without tools</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">acompletion</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Regular response with tools available</span>
+        <span class="n">tools</span> <span class="o">=</span> <span class="k">await</span> <span class="n">tool_node</span><span class="o">.</span><span class="n">all_tools</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">acompletion</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ModelResponseConverter</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="s2">&quot;litellm&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="3-conditional-routing-control-layer">3. Conditional Routing (Control Layer)<a class="headerlink" href="#3-conditional-routing-control-layer" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">should_use_tools</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decide whether to use tools, continue reasoning, or end.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>  <span class="c1"># No context, might need tools</span>
+
+    <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># If assistant made tool calls, execute them</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">last_message</span><span class="p">,</span> <span class="s2">&quot;tools_calls&quot;</span><span class="p">)</span> <span class="ow">and</span> 
+        <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span> 
+        <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>
+
+    <span class="c1"># If we got tool results, return to reasoning</span>
+    <span class="k">if</span> <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;MAIN&quot;</span>
+
+    <span class="c1"># Otherwise, we&#39;re done</span>
+    <span class="k">return</span> <span class="n">END</span>
+</code></pre></div>
+<h3 id="4-graph-assembly">4. Graph Assembly<a class="headerlink" href="#4-graph-assembly" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">()</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;MAIN&quot;</span><span class="p">,</span> <span class="n">main_agent</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;TOOL&quot;</span><span class="p">,</span> <span class="n">tool_node</span><span class="p">)</span>
+
+<span class="c1"># Conditional routing from main agent</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;MAIN&quot;</span><span class="p">,</span> <span class="n">should_use_tools</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s2">&quot;TOOL&quot;</span><span class="p">:</span> <span class="s2">&quot;TOOL&quot;</span><span class="p">,</span>
+    <span class="n">END</span><span class="p">:</span> <span class="n">END</span>
+<span class="p">})</span>
+
+<span class="c1"># Tools always return to main agent</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;TOOL&quot;</span><span class="p">,</span> <span class="s2">&quot;MAIN&quot;</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">set_entry_point</span><span class="p">(</span><span class="s2">&quot;MAIN&quot;</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="complete-example-weather-agent">🌤️ Complete Example: Weather Agent<a class="headerlink" href="#complete-example-weather-agent" title="Permanent link">&para;</a></h2>
+<p>Let's build a complete weather agent that demonstrates all the concepts:</p>
+<h3 id="step-1-define-the-tool">Step 1: Define the Tool<a class="headerlink" href="#step-1-define-the-tool" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.state.agent_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span>
+    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Auto-injected by PyAgenity</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Auto-injected by PyAgenity</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the current weather for a specific location.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        location: The city or location to get weather for</span>
+<span class="sd">        tool_call_id: Unique identifier for this tool call (injected)</span>
+<span class="sd">        state: Current agent state (injected)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Weather information as a string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Access injected parameters</span>
+    <span class="k">if</span> <span class="n">tool_call_id</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weather lookup [ID: </span><span class="si">{</span><span class="n">tool_call_id</span><span class="si">}</span><span class="s2">] for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span> <span class="ow">and</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">)</span><span class="si">}</span><span class="s2"> messages&quot;</span><span class="p">)</span>
+
+    <span class="c1"># In production, call a real weather API</span>
+    <span class="c1"># For demo, return mock data</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;The weather in </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2"> is sunny with a temperature of 72°F (22°C)&quot;</span>
+
+<span class="c1"># Register the tool</span>
+<span class="n">tool_node</span> <span class="o">=</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">get_weather</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="step-2-create-the-main-agent">Step 2: Create the Main Agent<a class="headerlink" href="#step-2-create-the-main-agent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">acompletion</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_messages</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main reasoning agent that handles conversation and tool decisions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    You are a helpful weather assistant. You can provide current weather </span>
+<span class="s2">    information for any location using the get_weather tool.</span>
+
+<span class="s2">    When users ask about weather:</span>
+<span class="s2">    1. Use the get_weather function with the location they specify</span>
+<span class="s2">    2. Provide helpful, detailed responses based on the results</span>
+<span class="s2">    3. Be conversational and friendly</span>
+
+<span class="s2">    If no location is specified, ask the user to provide one.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Convert agent state to LiteLLM message format</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="n">convert_messages</span><span class="p">(</span>
+        <span class="n">system_prompts</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">}],</span>
+        <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Determine if we need to call tools or give final response</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span> <span class="ow">and</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">:</span>
+        <span class="c1"># We just received tool results, give final response without tools</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">acompletion</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemini/gemini-2.5-flash&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Regular interaction, make tools available</span>
+        <span class="n">tools</span> <span class="o">=</span> <span class="k">await</span> <span class="n">tool_node</span><span class="o">.</span><span class="n">all_tools</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">acompletion</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemini/gemini-2.5-flash&quot;</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ModelResponseConverter</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="s2">&quot;litellm&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="step-3-implement-smart-routing">Step 3: Implement Smart Routing<a class="headerlink" href="#step-3-implement-smart-routing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">should_use_tools</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Intelligent routing that determines the next step in the conversation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        - &quot;TOOL&quot;: Execute pending tool calls</span>
+<span class="sd">        - &quot;MAIN&quot;: Continue with main agent reasoning  </span>
+<span class="sd">        - END: Finish the conversation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>  <span class="c1"># Fresh conversation, might need tools</span>
+
+    <span class="c1"># Prevent infinite loops by counting recent tool calls</span>
+    <span class="n">recent_tools</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span> <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">recent_tools</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning: Too many recent tool calls, ending conversation&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">END</span>
+
+    <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># If the assistant just made tool calls, execute them</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">last_message</span><span class="p">,</span> <span class="s2">&quot;tools_calls&quot;</span><span class="p">)</span> <span class="ow">and</span> 
+        <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span> 
+        <span class="nb">len</span><span class="p">(</span><span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
+        <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>
+
+    <span class="c1"># If we just received tool results, go back to main agent</span>
+    <span class="k">if</span> <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;MAIN&quot;</span>
+
+    <span class="c1"># Default: conversation is complete</span>
+    <span class="k">return</span> <span class="n">END</span>
+</code></pre></div>
+<h3 id="step-4-build-the-graph">Step 4: Build the Graph<a class="headerlink" href="#step-4-build-the-graph" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCheckpointer</span>
+
+<span class="c1"># Create the state graph</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;MAIN&quot;</span><span class="p">,</span> <span class="n">main_agent</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;TOOL&quot;</span><span class="p">,</span> <span class="n">tool_node</span><span class="p">)</span>
+
+<span class="c1"># Add conditional routing from main agent</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;MAIN&quot;</span><span class="p">,</span> <span class="n">should_use_tools</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s2">&quot;TOOL&quot;</span><span class="p">:</span> <span class="s2">&quot;TOOL&quot;</span><span class="p">,</span>  <span class="c1"># Execute tools</span>
+    <span class="n">END</span><span class="p">:</span> <span class="n">END</span>         <span class="c1"># End conversation</span>
+<span class="p">})</span>
+
+<span class="c1"># Tools always return to main agent for processing</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;TOOL&quot;</span><span class="p">,</span> <span class="s2">&quot;MAIN&quot;</span><span class="p">)</span> 
+
+<span class="c1"># Set the entry point</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">set_entry_point</span><span class="p">(</span><span class="s2">&quot;MAIN&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compile the graph with memory</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">checkpointer</span><span class="o">=</span><span class="n">InMemoryCheckpointer</span><span class="p">()</span>  <span class="c1"># Remembers conversation</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="step-5-run-the-agent">Step 5: Run the Agent<a class="headerlink" href="#step-5-run-the-agent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_weather_agent</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Demonstrate the weather agent in action.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Test queries</span>
+    <span class="n">queries</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;What&#39;s the weather like in New York?&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;How about San Francisco?&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Tell me about the weather in Tokyo&quot;</span>
+    <span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">query</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+
+        <span class="c1"># Create input</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Message</span><span class="o">.</span><span class="n">text_message</span><span class="p">(</span><span class="n">query</span><span class="p">)]}</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;thread_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;weather-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;recursion_limit&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+
+        <span class="c1"># Run the agent</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+            <span class="c1"># Display results</span>
+            <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+                <span class="n">role_emoji</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;👤&quot;</span><span class="p">,</span> <span class="s2">&quot;assistant&quot;</span><span class="p">:</span> <span class="s2">&quot;🤖&quot;</span><span class="p">,</span> <span class="s2">&quot;tool&quot;</span><span class="p">:</span> <span class="s2">&quot;🔧&quot;</span><span class="p">}</span>
+                <span class="n">emoji</span> <span class="o">=</span> <span class="n">role_emoji</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">role</span><span class="p">,</span> <span class="s2">&quot;❓&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">emoji</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">role</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Run it</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">run_weather_agent</span><span class="p">())</span>
+</code></pre></div>
+<h2 id="synchronous-vs-asynchronous-patterns">🔄 Synchronous vs Asynchronous Patterns<a class="headerlink" href="#synchronous-vs-asynchronous-patterns" title="Permanent link">&para;</a></h2>
+<p>PyAgenity supports both synchronous and asynchronous React patterns:</p>
+<h3 id="asynchronous-recommended">Asynchronous (Recommended)<a class="headerlink" href="#asynchronous-recommended" title="Permanent link">&para;</a></h3>
+<p><strong>Pros</strong>: Better performance, handles multiple requests, non-blocking I/O<br />
+<strong>Cons</strong>: Slightly more complex code</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Async main agent</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
+    <span class="n">tools</span> <span class="o">=</span> <span class="k">await</span> <span class="n">tool_node</span><span class="o">.</span><span class="n">all_tools</span><span class="p">()</span>  <span class="c1"># async</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">acompletion</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="c1"># async</span>
+    <span class="k">return</span> <span class="n">ModelResponseConverter</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="s2">&quot;litellm&quot;</span><span class="p">)</span>
+
+<span class="c1"># Async invocation</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="synchronous-simpler">Synchronous (Simpler)<a class="headerlink" href="#synchronous-simpler" title="Permanent link">&para;</a></h3>
+<p><strong>Pros</strong>: Simpler code, easier debugging<br />
+<strong>Cons</strong>: Blocking operations, lower throughput</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">completion</span>
+
+<span class="c1"># Sync main agent  </span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
+    <span class="n">tools</span> <span class="o">=</span> <span class="n">tool_node</span><span class="o">.</span><span class="n">all_tools_sync</span><span class="p">()</span>    <span class="c1"># sync</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">completion</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>             <span class="c1"># sync  </span>
+    <span class="k">return</span> <span class="n">ModelResponseConverter</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="s2">&quot;litellm&quot;</span><span class="p">)</span>
+
+<span class="c1"># Sync invocation</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Best Practice</strong>: Use async for production applications, sync for simple scripts or learning.</p>
+<h2 id="tool-design-best-practices">🛠️ Tool Design Best Practices<a class="headerlink" href="#tool-design-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="1-clear-function-signatures">1. Clear Function Signatures<a class="headerlink" href="#1-clear-function-signatures" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">well_designed_tool</span><span class="p">(</span>
+    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                       <span class="c1"># Required parameter  </span>
+    <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;fahrenheit&quot;</span><span class="p">,</span>           <span class="c1"># Optional with default</span>
+    <span class="n">include_forecast</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>      <span class="c1"># Boolean options</span>
+    <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>    <span class="c1"># Auto-injected</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># Auto-injected</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get weather information for a location.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        location: City name or coordinates (&quot;New York&quot; or &quot;40.7,-74.0&quot;)</span>
+<span class="sd">        unit: Temperature unit (&quot;fahrenheit&quot; or &quot;celsius&quot;) </span>
+<span class="sd">        include_forecast: Whether to include 3-day forecast</span>
+<span class="sd">        tool_call_id: Unique call identifier (auto-injected)</span>
+<span class="sd">        state: Current agent state (auto-injected)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Formatted weather information</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Implementation here</span>
+</code></pre></div>
+<h3 id="2-error-handling">2. Error Handling<a class="headerlink" href="#2-error-handling" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">robust_weather_tool</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Weather tool with proper error handling.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">location</span> <span class="ow">or</span> <span class="n">location</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Error: Please provide a valid location name&quot;</span>
+
+        <span class="c1"># Validate location format</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">location</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Error: Location name too long&quot;</span>
+
+        <span class="c1"># Call weather API (with timeout)</span>
+        <span class="n">weather_data</span> <span class="o">=</span> <span class="n">call_weather_api</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">weather_data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Sorry, I couldn&#39;t find weather data for &#39;</span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+
+        <span class="k">return</span> <span class="n">format_weather_response</span><span class="p">(</span><span class="n">weather_data</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">Timeout</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Error: Weather service is currently slow. Please try again.&quot;</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Error: Unable to connect to weather service&quot;</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Unexpected error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h3 id="3-dependency-injection-usage">3. Dependency Injection Usage<a class="headerlink" href="#3-dependency-injection-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">advanced_weather_tool</span><span class="p">(</span>
+    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tool that leverages dependency injection.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Use tool_call_id for logging/tracing</span>
+    <span class="k">if</span> <span class="n">tool_call_id</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weather request [</span><span class="si">{</span><span class="n">tool_call_id</span><span class="si">}</span><span class="s2">]: </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Access conversation context via state</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="ow">and</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+        <span class="c1"># Check user preferences from conversation history</span>
+        <span class="n">user_prefs</span> <span class="o">=</span> <span class="n">extract_user_preferences</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">)</span>
+        <span class="n">preferred_unit</span> <span class="o">=</span> <span class="n">user_prefs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;temperature_unit&quot;</span><span class="p">,</span> <span class="s2">&quot;fahrenheit&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">preferred_unit</span> <span class="o">=</span> <span class="s2">&quot;fahrenheit&quot;</span>
+
+    <span class="c1"># Get weather with user&#39;s preferred unit</span>
+    <span class="n">weather_data</span> <span class="o">=</span> <span class="n">get_weather_data</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">preferred_unit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">format_weather_response</span><span class="p">(</span><span class="n">weather_data</span><span class="p">,</span> <span class="n">preferred_unit</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="advanced-routing-patterns">🎛️ Advanced Routing Patterns<a class="headerlink" href="#advanced-routing-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="loop-prevention">Loop Prevention<a class="headerlink" href="#loop-prevention" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">safe_routing</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Routing with loop prevention and error recovery.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;MAIN&quot;</span>
+
+    <span class="c1"># Count recent tool calls to prevent infinite loops</span>
+    <span class="n">recent_tools</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span> 
+                      <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">recent_tools</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Too many tool calls, forcing completion&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">END</span>
+
+    <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Check for tool errors</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span> <span class="ow">and</span> 
+        <span class="s2">&quot;error&quot;</span> <span class="ow">in</span> <span class="n">last_message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Tool error detected, ending conversation&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">END</span>
+
+    <span class="c1"># Normal routing logic</span>
+    <span class="k">if</span> <span class="n">has_pending_tool_calls</span><span class="p">(</span><span class="n">last_message</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>
+    <span class="k">elif</span> <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;MAIN&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">END</span>
+</code></pre></div>
+<h3 id="multi-modal-routing">Multi-Modal Routing<a class="headerlink" href="#multi-modal-routing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">intelligent_routing</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Advanced routing that handles different tool types.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;MAIN&quot;</span>
+
+    <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Route based on tool types in the pending calls</span>
+    <span class="k">if</span> <span class="n">has_weather_tools</span><span class="p">(</span><span class="n">last_message</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;WEATHER_TOOLS&quot;</span>
+    <span class="k">elif</span> <span class="n">has_search_tools</span><span class="p">(</span><span class="n">last_message</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;SEARCH_TOOLS&quot;</span>
+    <span class="k">elif</span> <span class="n">has_file_tools</span><span class="p">(</span><span class="n">last_message</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;FILE_TOOLS&quot;</span>
+    <span class="k">elif</span> <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;MAIN&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">END</span>
+
+<span class="c1"># Multi-node graph for specialized tool handling</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;WEATHER_TOOLS&quot;</span><span class="p">,</span> <span class="n">weather_tool_node</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;SEARCH_TOOLS&quot;</span><span class="p">,</span> <span class="n">search_tool_node</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;FILE_TOOLS&quot;</span><span class="p">,</span> <span class="n">file_tool_node</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="debugging-react-agents">🐛 Debugging React Agents<a class="headerlink" href="#debugging-react-agents" title="Permanent link">&para;</a></h2>
+<h3 id="enable-detailed-logging">Enable Detailed Logging<a class="headerlink" href="#enable-detailed-logging" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="c1"># Configure logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="c1"># Add console publisher for real-time debugging</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">checkpointer</span><span class="o">=</span><span class="n">InMemoryCheckpointer</span><span class="p">(),</span>
+    <span class="n">publisher</span><span class="o">=</span><span class="n">ConsolePublisher</span><span class="p">()</span>  <span class="c1"># Shows execution flow</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="state-inspection">State Inspection<a class="headerlink" href="#state-inspection" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">debug_main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main agent with debug information.&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🧠 Main Agent Debug:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Context size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">[])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Last message: </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">role</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Last content preview: </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Your normal agent logic</span>
+    <span class="k">return</span> <span class="n">normal_main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">debug_routing</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Routing with debug output.&quot;&quot;&quot;</span>
+
+    <span class="n">decision</span> <span class="o">=</span> <span class="n">normal_routing</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔀 Routing Decision: </span><span class="si">{</span><span class="n">decision</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+        <span class="n">last_msg</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Based on: </span><span class="si">{</span><span class="n">last_msg</span><span class="o">.</span><span class="n">role</span><span class="si">}</span><span class="s2"> message&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">last_msg</span><span class="p">,</span> <span class="s2">&quot;tools_calls&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">last_msg</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Tool calls: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">last_msg</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">decision</span>
+</code></pre></div>
+<h3 id="common-issues-and-solutions">Common Issues and Solutions<a class="headerlink" href="#common-issues-and-solutions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Symptoms</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Infinite Loops</strong></td>
+<td>Same tool called repeatedly</td>
+<td>Add loop detection in routing</td>
+</tr>
+<tr>
+<td><strong>Missing Tools</strong></td>
+<td>"Tool not found" errors</td>
+<td>Verify tool registration in ToolNode</td>
+</tr>
+<tr>
+<td><strong>Context Loss</strong></td>
+<td>Agent forgets previous messages</td>
+<td>Check checkpointer configuration</td>
+</tr>
+<tr>
+<td><strong>Tool Errors</strong></td>
+<td>Tools return error messages</td>
+<td>Add error handling in tool functions</td>
+</tr>
+<tr>
+<td><strong>Slow Responses</strong></td>
+<td>Long response times</td>
+<td>Use async patterns, add timeouts</td>
+</tr>
+<tr>
+<td><strong>Memory Issues</strong></td>
+<td>Agent runs out of context</td>
+<td>Implement context compression</td>
+</tr>
+</tbody>
+</table>
+<h3 id="testing-patterns">Testing Patterns<a class="headerlink" href="#testing-patterns" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyagenity.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">asyncio</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_weather_agent_basic</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test basic weather agent functionality.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Test input</span>
+    <span class="n">inp</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Message</span><span class="o">.</span><span class="n">text_message</span><span class="p">(</span><span class="s2">&quot;Weather in Paris?&quot;</span><span class="p">)]}</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;thread_id&quot;</span><span class="p">:</span> <span class="s2">&quot;test-1&quot;</span><span class="p">,</span> <span class="s2">&quot;recursion_limit&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+
+    <span class="c1"># Run agent</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="c1"># Assertions</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="mi">2</span>  <span class="c1"># User + assistant response</span>
+
+    <span class="c1"># Check for tool usage</span>
+    <span class="n">tool_messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">tool_messages</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Expected tool to be called&quot;</span>
+
+    <span class="c1"># Check final response</span>
+    <span class="n">assistant_messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">]</span>
+    <span class="n">final_response</span> <span class="o">=</span> <span class="n">assistant_messages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="s2">&quot;paris&quot;</span> <span class="ow">in</span> <span class="n">final_response</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="performance-optimization">⚡ Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="caching-responses">Caching Responses<a class="headerlink" href="#caching-responses" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cached_weather_lookup</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cache weather responses to avoid repeated API calls.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">expensive_weather_api_call</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+
+<span class="c1"># For async caching, use a simple dict with TTL</span>
+<span class="n">weather_cache</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">CACHE_TTL</span> <span class="o">=</span> <span class="mi">300</span>  <span class="c1"># 5 minutes</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">cached_async_weather</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Async weather lookup with TTL cache.&quot;&quot;&quot;</span>
+
+    <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="c1"># Check cache</span>
+    <span class="k">if</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">weather_cache</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">weather_cache</span><span class="p">[</span><span class="n">location</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">now</span> <span class="o">-</span> <span class="n">timestamp</span> <span class="o">&lt;</span> <span class="n">CACHE_TTL</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span>
+
+    <span class="c1"># Fetch fresh data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_weather_api_call</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+    <span class="n">weather_cache</span><span class="p">[</span><span class="n">location</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">now</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+</code></pre></div>
+<h3 id="concurrent-tool-execution">Concurrent Tool Execution<a class="headerlink" href="#concurrent-tool-execution" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">parallel_tool_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute multiple tools concurrently.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Extract tool calls from last assistant message</span>
+    <span class="n">tool_calls</span> <span class="o">=</span> <span class="n">extract_tool_calls</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Execute tools in parallel</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">execute_tool_call</span><span class="p">(</span><span class="n">call</span><span class="p">)</span> <span class="k">for</span> <span class="n">call</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+
+    <span class="c1"># Convert results to messages</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Message</span><span class="o">.</span><span class="n">tool_message</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">call_id</span><span class="p">)</span> 
+            <span class="k">for</span> <span class="n">result</span><span class="p">,</span> <span class="n">call_id</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">tool_calls</span><span class="p">])]</span>
+</code></pre></div>
+<h2 id="example-variations">🎯 Example Variations<a class="headerlink" href="#example-variations" title="Permanent link">&para;</a></h2>
+<h3 id="multi-tool-weather-agent">Multi-Tool Weather Agent<a class="headerlink" href="#multi-tool-weather-agent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Weather in </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: Sunny, 75°F&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_forecast</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">days</span><span class="si">}</span><span class="s2">-day forecast for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: Mostly sunny&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_air_quality</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Air quality in </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: Good (AQI: 45)&quot;</span>
+
+<span class="c1"># Multi-tool setup</span>
+<span class="n">tool_node</span> <span class="o">=</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">get_weather</span><span class="p">,</span> <span class="n">get_forecast</span><span class="p">,</span> <span class="n">get_air_quality</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="error-recovery-agent">Error Recovery Agent<a class="headerlink" href="#error-recovery-agent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">resilient_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Agent with built-in error recovery.&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">normal_agent_logic</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Agent error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Return graceful error response</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="n">Message</span><span class="o">.</span><span class="n">text_message</span><span class="p">(</span>
+            <span class="s2">&quot;I apologize, but I&#39;m experiencing technical difficulties. &quot;</span>
+            <span class="s2">&quot;Please try rephrasing your request or try again later.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">error_message</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="next-steps">🚀 Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>Congratulations! You now understand the fundamentals of React agents. Here's what to explore next:</p>
+<ol>
+<li><strong><a href="../02-dependency-injection/">Dependency Injection</a></strong> - Advanced parameter injection and service management</li>
+<li><strong><a href="../03-mcp-integration/">MCP Integration</a></strong> - Connect to external tool systems via protocol</li>
+<li><strong><a href="../04-streaming/">Streaming Responses</a></strong> - Real-time agent responses and event handling</li>
+</ol>
+<h3 id="advanced-topics-to-explore">Advanced Topics to Explore<a class="headerlink" href="#advanced-topics-to-explore" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Multi-Agent Orchestration</strong> - Coordinating multiple React agents</li>
+<li><strong>Memory Integration</strong> - Long-term conversation memory with stores</li>
+<li><strong>Custom Tool Protocols</strong> - Building domain-specific tool systems</li>
+<li><strong>Production Deployment</strong> - Scaling React agents in production</li>
+</ul>
+<h2 id="reference-files">📁 Reference Files<a class="headerlink" href="#reference-files" title="Permanent link">&para;</a></h2>
+<p>Study these example files to see the patterns in action:</p>
+<ul>
+<li><code>examples/react/react_sync.py</code> - Basic synchronous React agent</li>
+<li><code>examples/react/react_weather_agent.py</code> - Asynchronous weather agent with caching</li>
+<li><code>examples/react/react_native_tools_agent.py</code> - Using PyAgenity's native tools</li>
+</ul>
+<p>The React pattern is your gateway to building intelligent, capable agents. Master these fundamentals, and you'll be ready to tackle complex multi-step problems with confidence!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.pagination", "navigation.goto_top", "navigation.path", "navigation.tabs", "navigation.top", "search-suggest", "search.highlight", "search.share", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

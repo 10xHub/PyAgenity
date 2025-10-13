@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://10xhub.github.io/taf/reference/adapters/tools/langchain_adapter/">
+        <link rel="canonical" href="https://10xhub.github.io/agentflow/reference/adapters/tools/langchain_adapter/">
       
       
         <link rel="prev" href="../composio_adapter/">
@@ -161,7 +161,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/10xhub/taf" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/10xhub/agentflow" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -296,7 +296,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/10xhub/taf" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/10xhub/agentflow" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -4609,10 +4609,10 @@
 <a id="agentflow.adapters.tools.langchain_adapter"></a>
     <div class="doc doc-contents first">
 
-        <p>LangChain adapter for TAF (generic wrapper, registry-based).</p>
+        <p>LangChain adapter for agentflow (generic wrapper, registry-based).</p>
 <p>This adapter mirrors the spirit of Google's ADK LangChain wrapper by allowing
 you to register any LangChain tool (BaseTool/StructuredTool) or a duck-typed
-object that exposes a <code>run</code>/<code>_run</code> method, then exposing it to TAF in
+object that exposes a <code>run</code>/<code>_run</code> method, then exposing it to agentflow in
 the uniform function-calling schema that <code>ToolNode</code> expects.</p>
 <p>Key points:
 - Register arbitrary tools at runtime via <code>register_tool</code> / <code>register_tools</code>.
@@ -4625,7 +4625,7 @@ the uniform function-calling schema that <code>ToolNode</code> expects.</p>
 
 <details class="optional-install" open>
   <summary>Optional install</summary>
-  <p>pip install agentflow[langchain]</p>
+  <p>pip install 10xscale-agentflow[langchain]</p>
 </details>        <p>Backward-compat convenience:
 - For continuity with prior versions, the adapter can auto-register two common
     tools (<code>tavily_search</code> and <code>requests_get</code>) if <code>autoload_default_tools</code> is
@@ -5102,7 +5102,7 @@ the uniform function-calling schema that <code>ToolNode</code> expects.</p>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">HAS_LANGCHAIN</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
                 <span class="s2">&quot;LangChainAdapter requires &#39;langchain-core&#39; and optional integrations.</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="s2">&quot;Install with: pip install agentflow[langchain]&quot;</span>
+                <span class="s2">&quot;Install with: pip install 10xscale-agentflow[langchain]&quot;</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">LangChainToolWrapper</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_autoload</span> <span class="o">=</span> <span class="n">autoload_default_tools</span>
@@ -5226,7 +5226,7 @@ the uniform function-calling schema that <code>ToolNode</code> expects.</p>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
                 <span class="s2">&quot;Tavily tool requires &#39;langchain-tavily&#39; (preferred) or&quot;</span>
                 <span class="s2">&quot; &#39;langchain-community&#39; with &#39;tavily-python&#39;.</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="s2">&quot;Install with: pip install agentflow[langchain]&quot;</span>
+                <span class="s2">&quot;Install with: pip install 10xscale-agentflow[langchain]&quot;</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_requests_get_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
@@ -5255,7 +5255,7 @@ the uniform function-calling schema that <code>ToolNode</code> expects.</p>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># ImportError or runtime</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
                 <span class="s2">&quot;Requests tool requires &#39;langchain-community&#39;.</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="s2">&quot;Install with: pip install agentflow[langchain]&quot;</span>
+                <span class="s2">&quot;Install with: pip install 10xscale-agentflow[langchain]&quot;</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_try_autoload_defaults</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -5398,7 +5398,7 @@ the uniform function-calling schema that <code>ToolNode</code> expects.</p>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">HAS_LANGCHAIN</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
             <span class="s2">&quot;LangChainAdapter requires &#39;langchain-core&#39; and optional integrations.</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="s2">&quot;Install with: pip install agentflow[langchain]&quot;</span>
+            <span class="s2">&quot;Install with: pip install 10xscale-agentflow[langchain]&quot;</span>
         <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_registry</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">LangChainToolWrapper</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_autoload</span> <span class="o">=</span> <span class="n">autoload_default_tools</span>

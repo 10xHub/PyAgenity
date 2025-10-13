@@ -167,7 +167,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
       </div>
@@ -302,7 +302,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
     </div>
@@ -4731,23 +4731,27 @@
 <h2 id="basic-architecture-components">🏗️ Basic Architecture Components<a class="headerlink" href="#basic-architecture-components" title="Permanent link">&para;</a></h2>
 <p>A React agent requires these 10xScale Agentflow components:</p>
 <h3 id="1-tools-action-layer">1. Tools (Action Layer)<a class="headerlink" href="#1-tools-action-layer" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolNode</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolNode</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get weather for a location.&quot;&quot;&quot;</span>
     <span class="c1"># In production: call weather API</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;The weather in </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2"> is sunny, 75°F&quot;</span>
 
+
 <span class="k">def</span><span class="w"> </span><span class="nf">search_web</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Search the web for information.&quot;&quot;&quot;</span>
     <span class="c1"># In production: call search API</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Search results for: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span>
 
+
 <span class="n">tool_node</span> <span class="o">=</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">get_weather</span><span class="p">,</span> <span class="n">search_web</span><span class="p">])</span>
 </code></pre></div>
 <h3 id="2-main-agent-reasoning-layer">2. Main Agent (Reasoning Layer)<a class="headerlink" href="#2-main-agent-reasoning-layer" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">acompletion</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
+
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The reasoning component that decides when to use tools.&quot;&quot;&quot;</span>
@@ -4770,7 +4774,8 @@
     <span class="k">return</span> <span class="n">ModelResponseConverter</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="s2">&quot;litellm&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="3-conditional-routing-control-layer">3. Conditional Routing (Control Layer)<a class="headerlink" href="#3-conditional-routing-control-layer" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">should_use_tools</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decide whether to use tools, continue reasoning, or end.&quot;&quot;&quot;</span>
@@ -4782,8 +4787,8 @@
 
     <span class="c1"># If assistant made tool calls, execute them</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">last_message</span><span class="p">,</span> <span class="s2">&quot;tools_calls&quot;</span><span class="p">)</span> <span class="ow">and</span>
-        <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span>
-        <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
+            <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span>
+            <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>
 
     <span class="c1"># If we got tool results, return to reasoning</span>
@@ -4794,7 +4799,7 @@
     <span class="k">return</span> <span class="n">END</span>
 </code></pre></div>
 <h3 id="4-graph-assembly">4. Graph Assembly<a class="headerlink" href="#4-graph-assembly" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
 
 <span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">()</span>
 <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;MAIN&quot;</span><span class="p">,</span> <span class="n">main_agent</span><span class="p">)</span>
@@ -4816,15 +4821,16 @@
 <p>Let's build a complete weather agent that demonstrates all the concepts:</p>
 <h3 id="step-1-define-the-tool">Step 1: Define the Tool<a class="headerlink" href="#step-1-define-the-tool" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolNode</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.state.agent_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToolNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.state.agent_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
 
 <span class="n">load_dotenv</span><span class="p">()</span>
 
+
 <span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span>
-    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Auto-injected by InjectQ</span>
-    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Auto-injected by InjectQ</span>
+        <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Auto-injected by InjectQ</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Auto-injected by InjectQ</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the current weather for a specific location.</span>
@@ -4848,13 +4854,15 @@
     <span class="c1"># For demo, return mock data</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;The weather in </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2"> is sunny with a temperature of 72°F (22°C)&quot;</span>
 
+
 <span class="c1"># Register the tool</span>
 <span class="n">tool_node</span> <span class="o">=</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">get_weather</span><span class="p">])</span>
 </code></pre></div>
 <h3 id="step-2-create-the-main-agent">Step 2: Create the Main Agent<a class="headerlink" href="#step-2-create-the-main-agent" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">acompletion</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_messages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_messages</span>
+
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -4900,7 +4908,8 @@
     <span class="k">return</span> <span class="n">ModelResponseConverter</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="s2">&quot;litellm&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="step-3-implement-smart-routing">Step 3: Implement Smart Routing<a class="headerlink" href="#step-3-implement-smart-routing" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">should_use_tools</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -4925,9 +4934,9 @@
 
     <span class="c1"># If the assistant just made tool calls, execute them</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">last_message</span><span class="p">,</span> <span class="s2">&quot;tools_calls&quot;</span><span class="p">)</span> <span class="ow">and</span>
-        <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span>
-        <span class="nb">len</span><span class="p">(</span><span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
-        <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
+            <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
+            <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>
 
     <span class="c1"># If we just received tool results, go back to main agent</span>
@@ -4938,8 +4947,8 @@
     <span class="k">return</span> <span class="n">END</span>
 </code></pre></div>
 <h3 id="step-4-build-the-graph">Step 4: Build the Graph<a class="headerlink" href="#step-4-build-the-graph" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCheckpointer</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCheckpointer</span>
 
 <span class="c1"># Create the state graph</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">()</span>
@@ -4951,7 +4960,7 @@
 <span class="c1"># Add conditional routing from main agent</span>
 <span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;MAIN&quot;</span><span class="p">,</span> <span class="n">should_use_tools</span><span class="p">,</span> <span class="p">{</span>
     <span class="s2">&quot;TOOL&quot;</span><span class="p">:</span> <span class="s2">&quot;TOOL&quot;</span><span class="p">,</span>  <span class="c1"># Execute tools</span>
-    <span class="n">END</span><span class="p">:</span> <span class="n">END</span>         <span class="c1"># End conversation</span>
+    <span class="n">END</span><span class="p">:</span> <span class="n">END</span>  <span class="c1"># End conversation</span>
 <span class="p">})</span>
 
 <span class="c1"># Tools always return to main agent for processing</span>
@@ -4966,7 +4975,8 @@
 <span class="p">)</span>
 </code></pre></div>
 <h3 id="step-5-run-the-agent">Step 5: Run the Agent<a class="headerlink" href="#step-5-run-the-agent" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_weather_agent</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Demonstrate the weather agent in action.&quot;&quot;&quot;</span>
@@ -4979,9 +4989,9 @@
     <span class="p">]</span>
 
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">query</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
 
         <span class="c1"># Create input</span>
         <span class="n">inp</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Message</span><span class="o">.</span><span class="n">text_message</span><span class="p">(</span><span class="n">query</span><span class="p">)]}</span>
@@ -5000,9 +5010,11 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+
 <span class="c1"># Run it</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">run_weather_agent</span><span class="p">())</span>
 </code></pre></div>
 <h2 id="synchronous-vs-asynchronous-patterns">🔄 Synchronous vs Asynchronous Patterns<a class="headerlink" href="#synchronous-vs-asynchronous-patterns" title="Permanent link">&para;</a></h2>
@@ -5169,7 +5181,7 @@
 </code></pre></div>
 <h2 id="debugging-react-agents">🐛 Debugging React Agents<a class="headerlink" href="#debugging-react-agents" title="Permanent link">&para;</a></h2>
 <h3 id="enable-detailed-logging">Enable Detailed Logging<a class="headerlink" href="#enable-detailed-logging" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
 <span class="c1"># Configure logging</span>
@@ -5253,7 +5265,8 @@
 </table>
 <h3 id="testing-patterns">Testing Patterns<a class="headerlink" href="#testing-patterns" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">asyncio</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_weather_agent_basic</span><span class="p">():</span>

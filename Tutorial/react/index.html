@@ -167,7 +167,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
       </div>
@@ -302,7 +302,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
     </div>
@@ -4146,10 +4146,10 @@
 <h2 id="quick-start">🚀 Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Install 10xScale Agentflow with dependencies</span>
-pip<span class="w"> </span>install<span class="w"> </span>taf<span class="o">[</span>litellm<span class="o">]</span>
+pip<span class="w"> </span>install<span class="w"> </span>agentflow<span class="o">[</span>litellm<span class="o">]</span>
 
 <span class="c1"># For MCP examples</span>
-pip<span class="w"> </span>install<span class="w"> </span>taf<span class="o">[</span>mcp<span class="o">]</span>
+pip<span class="w"> </span>install<span class="w"> </span>agentflow<span class="o">[</span>mcp<span class="o">]</span>
 
 <span class="c1"># Set up environment</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>your_key
@@ -4204,24 +4204,29 @@ python<span class="w"> </span>stream1.py
 </table>
 <h2 id="core-react-architecture">🏗️ Core React Architecture<a class="headerlink" href="#core-react-architecture" title="Permanent link">&para;</a></h2>
 <p>All React agents in 10xScale Agentflow follow this pattern:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">ToolNode</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">ToolNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+
 
 <span class="c1"># 1. Define tools</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">my_tool</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Result for </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">&quot;</span>
 
+
 <span class="n">tool_node</span> <span class="o">=</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">my_tool</span><span class="p">])</span>
+
 
 <span class="c1"># 2. Create reasoning agent</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">):</span>
     <span class="c1"># LLM reasoning with optional tool calls</span>
     <span class="k">return</span> <span class="n">llm_response_with_tools</span>
 
+
 <span class="c1"># 3. Implement conditional routing</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">should_use_tools</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="c1"># Logic to decide: tools, main agent, or end</span>
     <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span> <span class="o">|</span> <span class="s2">&quot;MAIN&quot;</span> <span class="o">|</span> <span class="n">END</span>
+
 
 <span class="c1"># 4. Build the graph</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">()</span>
@@ -4271,7 +4276,7 @@ python<span class="w"> </span>stream1.py
 </code></pre></div>
 <h2 id="debugging-tips">🐛 Debugging Tips<a class="headerlink" href="#debugging-tips" title="Permanent link">&para;</a></h2>
 <h3 id="enable-detailed-logging">Enable Detailed Logging<a class="headerlink" href="#enable-detailed-logging" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
     <span class="n">checkpointer</span><span class="o">=</span><span class="n">InMemoryCheckpointer</span><span class="p">(),</span>

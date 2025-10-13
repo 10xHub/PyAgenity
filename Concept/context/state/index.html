@@ -167,7 +167,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
       </div>
@@ -302,7 +302,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
     </div>
@@ -4629,8 +4629,8 @@
 <p>In 10xScale Agentflow, the <code>AgentState</code> is far more than just a data container—it's the <strong>cognitive foundation</strong> that gives your agent the ability to think, remember, and reason across interactions. Understanding how state works is crucial for building agents that can maintain coherent, contextual conversations.</p>
 <h2 id="the-state-as-living-memory">The State as Living Memory<a class="headerlink" href="#the-state-as-living-memory" title="Permanent link">&para;</a></h2>
 <p>Think of <code>AgentState</code> as your agent's working memory—the mental workspace where it holds current thoughts, maintains conversation flow, and tracks its own decision-making process.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
 
 <span class="c1"># The agent&#39;s mind in action</span>
 <span class="n">state</span> <span class="o">=</span> <span class="n">AgentState</span><span class="p">()</span>
@@ -4686,7 +4686,8 @@
 <h2 id="context-management-the-art-of-forgetting">Context Management: The Art of Forgetting<a class="headerlink" href="#context-management-the-art-of-forgetting" title="Permanent link">&para;</a></h2>
 <p>Context management in 10xScale Agentflow is a sophisticated process that mirrors how humans manage their working memory—keeping what's relevant, summarizing what's important, and gracefully forgetting what's no longer needed.</p>
 <h3 id="the-basecontextmanager-philosophy">The BaseContextManager Philosophy<a class="headerlink" href="#the-basecontextmanager-philosophy" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseContextManager</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseContextManager</span>
+
 
 <span class="k">class</span><span class="w"> </span><span class="nc">MyContextManager</span><span class="p">(</span><span class="n">BaseContextManager</span><span class="p">):</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">atrim_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AgentState</span><span class="p">:</span>
@@ -4694,7 +4695,7 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_context_length</span><span class="p">:</span>
             <span class="c1"># Strategy: Keep recent context, summarize the rest</span>
             <span class="n">recent_context</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:]</span>  <span class="c1"># Last 20 messages</span>
-            <span class="n">older_context</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[:</span><span class="o">-</span><span class="mi">20</span><span class="p">]</span>   <span class="c1"># Everything before</span>
+            <span class="n">older_context</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[:</span><span class="o">-</span><span class="mi">20</span><span class="p">]</span>  <span class="c1"># Everything before</span>
 
             <span class="c1"># Create a summary of older interactions</span>
             <span class="n">summary</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_summary</span><span class="p">(</span><span class="n">older_context</span><span class="p">)</span>
@@ -4757,8 +4758,9 @@
 <h2 id="state-extension-building-specialized-agents">State Extension: Building Specialized Agents<a class="headerlink" href="#state-extension-building-specialized-agents" title="Permanent link">&para;</a></h2>
 <p>One of 10xScale Agentflow's most powerful features is <strong>state extensibility</strong>—the ability to create custom state classes that capture domain-specific information while maintaining compatibility with the framework.</p>
 <h3 id="custom-state-classes">Custom State Classes<a class="headerlink" href="#custom-state-classes" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
+
 
 <span class="k">class</span><span class="w"> </span><span class="nc">CustomerServiceState</span><span class="p">(</span><span class="n">AgentState</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Specialized state for customer service agents.&quot;&quot;&quot;</span>

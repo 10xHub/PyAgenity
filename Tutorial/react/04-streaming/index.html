@@ -167,7 +167,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
       </div>
@@ -302,7 +302,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
     </div>
@@ -4628,11 +4628,12 @@
 <h2 id="basic-streaming-setup">🏗️ Basic Streaming Setup<a class="headerlink" href="#basic-streaming-setup" title="Permanent link">&para;</a></h2>
 <h3 id="1-streaming-enabled-main-agent">1. Streaming-Enabled Main Agent<a class="headerlink" href="#1-streaming-enabled-main-agent" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">acompletion</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
+
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">streaming_main_agent</span><span class="p">(</span>
-    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
-    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Main agent with streaming support.&quot;&quot;&quot;</span>
 
@@ -4699,8 +4700,9 @@
 <span class="n">tool_node</span> <span class="o">=</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">streaming_weather_tool</span><span class="p">])</span>
 </code></pre></div>
 <h3 id="3-graph-with-streaming-support">3. Graph with Streaming Support<a class="headerlink" href="#3-graph-with-streaming-support" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">streaming_router</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Router optimized for streaming workflows.&quot;&quot;&quot;</span>
@@ -4712,8 +4714,8 @@
 
     <span class="c1"># Tool call routing</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">last_message</span><span class="p">,</span> <span class="s2">&quot;tools_calls&quot;</span><span class="p">)</span> <span class="ow">and</span>
-        <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span>
-        <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
+            <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span>
+            <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>
 
     <span class="c1"># Return to main after tool execution</span>
@@ -4722,6 +4724,7 @@
 
     <span class="c1"># End conversation</span>
     <span class="k">return</span> <span class="n">END</span>
+
 
 <span class="c1"># Build streaming graph</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">()</span>
@@ -4748,13 +4751,13 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">litellm</span><span class="w"> </span><span class="kn">import</span> <span class="n">acompletion</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCheckpointer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">ToolNode</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.state.agent_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">ResponseGranularity</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_messages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.adapters.llm.model_response_converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelResponseConverter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCheckpointer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">ToolNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.state.agent_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">ResponseGranularity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils.converter</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_messages</span>
 
 <span class="c1"># Configure logging</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
@@ -4762,11 +4765,12 @@
 
 <span class="n">load_dotenv</span><span class="p">()</span>
 
+
 <span class="c1"># Streaming-compatible tools</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_weather_stream</span><span class="p">(</span>
-    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Weather tool optimized for streaming workflows.&quot;&quot;&quot;</span>
 
@@ -4790,10 +4794,11 @@
         <span class="n">tool_call_id</span><span class="o">=</span><span class="n">tool_call_id</span>
     <span class="p">)</span>
 
+
 <span class="k">def</span><span class="w"> </span><span class="nf">get_forecast_stream</span><span class="p">(</span>
-    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">tool_call_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Multi-day forecast tool for streaming.&quot;&quot;&quot;</span>
 
@@ -4816,14 +4821,16 @@
         <span class="n">tool_call_id</span><span class="o">=</span><span class="n">tool_call_id</span>
     <span class="p">)</span>
 
+
 <span class="c1"># Create tool node</span>
 <span class="n">tool_node</span> <span class="o">=</span> <span class="n">ToolNode</span><span class="p">([</span><span class="n">get_weather_stream</span><span class="p">,</span> <span class="n">get_forecast_stream</span><span class="p">])</span>
 
+
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">streaming_main_agent</span><span class="p">(</span>
-    <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
-    <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">checkpointer</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">store</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">checkpointer</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">store</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModelResponseConverter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Main agent optimized for streaming responses.</span>
@@ -4880,6 +4887,7 @@
 
     <span class="k">return</span> <span class="n">ModelResponseConverter</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">converter</span><span class="o">=</span><span class="s2">&quot;litellm&quot;</span><span class="p">)</span>
 
+
 <span class="k">def</span><span class="w"> </span><span class="nf">should_use_tools_stream</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Routing logic optimized for streaming.&quot;&quot;&quot;</span>
 
@@ -4896,9 +4904,9 @@
     <span class="n">last_message</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">last_message</span><span class="p">,</span> <span class="s2">&quot;tools_calls&quot;</span><span class="p">)</span> <span class="ow">and</span>
-        <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span>
-        <span class="nb">len</span><span class="p">(</span><span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
-        <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
+            <span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span> <span class="ow">and</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">last_message</span><span class="o">.</span><span class="n">tools_calls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
+            <span class="n">last_message</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;assistant&quot;</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[ROUTER] Tool calls detected - routing to TOOL&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="s2">&quot;TOOL&quot;</span>
 
@@ -4908,6 +4916,7 @@
 
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[ROUTER] Conversation complete - ending&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">END</span>
+
 
 <span class="c1"># Build the streaming graph</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">()</span>
@@ -4925,6 +4934,7 @@
 <span class="c1"># Compile with checkpointer</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">checkpointer</span><span class="o">=</span><span class="n">InMemoryCheckpointer</span><span class="p">())</span>
 
+
 <span class="c1"># Demo function</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">demo_streaming_agent</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Demonstrate streaming weather agent.&quot;&quot;&quot;</span>
@@ -4939,7 +4949,7 @@
     <span class="p">]</span>
 
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">query</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_queries</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔹 Query </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔹 Query </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
 
         <span class="c1"># Prepare input with streaming enabled</span>
@@ -4977,13 +4987,14 @@
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
+
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">demo_streaming_agent</span><span class="p">())</span>
 </code></pre></div>
 <h2 id="event-driven-streaming">📊 Event-Driven Streaming<a class="headerlink" href="#event-driven-streaming" title="Permanent link">&para;</a></h2>
 <h3 id="understanding-10xscale-agentflow-events">Understanding 10xScale Agentflow Events<a class="headerlink" href="#understanding-10xscale-agentflow-events" title="Permanent link">&para;</a></h3>
 <p>10xScale Agentflow streams events that represent different stages of agent execution:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils.streaming</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventModel</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils.streaming</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventModel</span>
 
 <span class="c1"># Event types you&#39;ll receive:</span>
 <span class="c1"># - &quot;message_start&quot;: Beginning of a message</span>

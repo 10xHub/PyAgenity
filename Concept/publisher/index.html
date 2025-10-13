@@ -167,7 +167,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
       </div>
@@ -302,7 +302,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
     </div>
@@ -4276,20 +4276,20 @@
 <p>Think of it as the nervous system of your AI application: every decision, every tool call, every state change, every error generates events that flow through the publisher pipeline, giving you unprecedented insight into your agent's behavior and performance.</p>
 <h2 id="event-model-the-foundation-of-observability">Event Model: The Foundation of Observability<a class="headerlink" href="#event-model-the-foundation-of-observability" title="Permanent link">&para;</a></h2>
 <p>Every observable action in 10xScale Agentflow is captured as a structured <code>EventModel</code> that contains rich metadata about what's happening:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventModel</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span><span class="p">,</span> <span class="n">ContentType</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventModel</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span><span class="p">,</span> <span class="n">ContentType</span>
 
 <span class="c1"># Events are automatically generated during execution</span>
 <span class="n">event</span> <span class="o">=</span> <span class="n">EventModel</span><span class="p">(</span>
-    <span class="n">event</span><span class="o">=</span><span class="n">Event</span><span class="o">.</span><span class="n">NODE_EXECUTION</span><span class="p">,</span>           <span class="c1"># Source: graph, node, tool, or streaming</span>
-    <span class="n">event_type</span><span class="o">=</span><span class="n">EventType</span><span class="o">.</span><span class="n">START</span><span class="p">,</span>           <span class="c1"># Phase: start, progress, result, end, error</span>
-    <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Processing user query...&quot;</span><span class="p">,</span>    <span class="c1"># Human-readable content</span>
-    <span class="n">content_type</span><span class="o">=</span><span class="n">ContentType</span><span class="o">.</span><span class="n">TEXT</span><span class="p">,</span>        <span class="c1"># Semantic type of content</span>
-    <span class="n">node_name</span><span class="o">=</span><span class="s2">&quot;research_agent&quot;</span><span class="p">,</span>           <span class="c1"># Which node is executing</span>
-    <span class="n">run_id</span><span class="o">=</span><span class="s2">&quot;run_12345&quot;</span><span class="p">,</span>                   <span class="c1"># Unique execution identifier</span>
-    <span class="n">thread_id</span><span class="o">=</span><span class="s2">&quot;thread_abc&quot;</span><span class="p">,</span>               <span class="c1"># Conversation thread</span>
-    <span class="n">sequence_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>                        <span class="c1"># Ordering within the stream</span>
-    <span class="n">timestamp</span><span class="o">=</span><span class="mf">1638360000.0</span><span class="p">,</span>               <span class="c1"># When this occurred</span>
-    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>                            <span class="c1"># Additional context</span>
+    <span class="n">event</span><span class="o">=</span><span class="n">Event</span><span class="o">.</span><span class="n">NODE_EXECUTION</span><span class="p">,</span>  <span class="c1"># Source: graph, node, tool, or streaming</span>
+    <span class="n">event_type</span><span class="o">=</span><span class="n">EventType</span><span class="o">.</span><span class="n">START</span><span class="p">,</span>  <span class="c1"># Phase: start, progress, result, end, error</span>
+    <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Processing user query...&quot;</span><span class="p">,</span>  <span class="c1"># Human-readable content</span>
+    <span class="n">content_type</span><span class="o">=</span><span class="n">ContentType</span><span class="o">.</span><span class="n">TEXT</span><span class="p">,</span>  <span class="c1"># Semantic type of content</span>
+    <span class="n">node_name</span><span class="o">=</span><span class="s2">&quot;research_agent&quot;</span><span class="p">,</span>  <span class="c1"># Which node is executing</span>
+    <span class="n">run_id</span><span class="o">=</span><span class="s2">&quot;run_12345&quot;</span><span class="p">,</span>  <span class="c1"># Unique execution identifier</span>
+    <span class="n">thread_id</span><span class="o">=</span><span class="s2">&quot;thread_abc&quot;</span><span class="p">,</span>  <span class="c1"># Conversation thread</span>
+    <span class="n">sequence_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Ordering within the stream</span>
+    <span class="n">timestamp</span><span class="o">=</span><span class="mf">1638360000.0</span><span class="p">,</span>  <span class="c1"># When this occurred</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>  <span class="c1"># Additional context</span>
         <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="s2">&quot;user_123&quot;</span><span class="p">,</span>
         <span class="s2">&quot;query_type&quot;</span><span class="p">:</span> <span class="s2">&quot;research&quot;</span><span class="p">,</span>
         <span class="s2">&quot;estimated_duration&quot;</span><span class="p">:</span> <span class="mf">5.2</span>
@@ -4340,40 +4340,40 @@
 <p>Streaming events enable real-time UI updates, progressive content delivery, and live monitoring of content generation processes.</p>
 <h2 id="content-types-and-semantic-understanding">Content Types and Semantic Understanding<a class="headerlink" href="#content-types-and-semantic-understanding" title="Permanent link">&para;</a></h2>
 <p>Events carry semantic information about their content through the <code>ContentType</code> enum, enabling intelligent processing and routing:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContentType</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContentType</span>
 
 <span class="c1"># Text and messaging content</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">TEXT</span>         <span class="c1"># Plain text content</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">MESSAGE</span>      <span class="c1"># Structured message content</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">REASONING</span>    <span class="c1"># Agent reasoning/thinking content</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">TEXT</span>  <span class="c1"># Plain text content</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">MESSAGE</span>  <span class="c1"># Structured message content</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">REASONING</span>  <span class="c1"># Agent reasoning/thinking content</span>
 
 <span class="c1"># Tool and function content</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">TOOL_CALL</span>    <span class="c1"># Tool invocation details</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">TOOL_CALL</span>  <span class="c1"># Tool invocation details</span>
 <span class="n">ContentType</span><span class="o">.</span><span class="n">TOOL_RESULT</span>  <span class="c1"># Tool execution results</span>
 
 <span class="c1"># Multimedia content</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">IMAGE</span>        <span class="c1"># Image content or references</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">AUDIO</span>        <span class="c1"># Audio content or references</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">VIDEO</span>        <span class="c1"># Video content or references</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">DOCUMENT</span>     <span class="c1"># Document content or references</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">IMAGE</span>  <span class="c1"># Image content or references</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">AUDIO</span>  <span class="c1"># Audio content or references</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">VIDEO</span>  <span class="c1"># Video content or references</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">DOCUMENT</span>  <span class="c1"># Document content or references</span>
 
 <span class="c1"># System content</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">STATE</span>        <span class="c1"># Agent state information</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">UPDATE</span>       <span class="c1"># General update notifications</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">ERROR</span>        <span class="c1"># Error information</span>
-<span class="n">ContentType</span><span class="o">.</span><span class="n">DATA</span>         <span class="c1"># Structured data payloads</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">STATE</span>  <span class="c1"># Agent state information</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">UPDATE</span>  <span class="c1"># General update notifications</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">ERROR</span>  <span class="c1"># Error information</span>
+<span class="n">ContentType</span><span class="o">.</span><span class="n">DATA</span>  <span class="c1"># Structured data payloads</span>
 </code></pre></div>
 <p>This semantic typing enables sophisticated event processing, such as routing error events to monitoring systems while sending reasoning content to debugging interfaces.</p>
 <h2 id="publisher-implementations">Publisher Implementations<a class="headerlink" href="#publisher-implementations" title="Permanent link">&para;</a></h2>
 <p>10xScale Agentflow provides multiple publisher implementations for different use cases:</p>
 <h3 id="console-publisher-development-and-debugging">Console Publisher: Development and Debugging<a class="headerlink" href="#console-publisher-development-and-debugging" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.console_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.console_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
 
 <span class="c1"># Simple console output for development</span>
 <span class="n">console_publisher</span> <span class="o">=</span> <span class="n">ConsolePublisher</span><span class="p">({</span>
-    <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>           <span class="c1"># Output format: json or text</span>
+    <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>  <span class="c1"># Output format: json or text</span>
     <span class="s2">&quot;include_timestamp&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># Include timestamps</span>
-    <span class="s2">&quot;indent&quot;</span><span class="p">:</span> <span class="mi">2</span>                 <span class="c1"># JSON indentation</span>
+    <span class="s2">&quot;indent&quot;</span><span class="p">:</span> <span class="mi">2</span>  <span class="c1"># JSON indentation</span>
 <span class="p">})</span>
 
 <span class="c1"># Configure your graph to use console publishing</span>
@@ -4402,7 +4402,7 @@
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="redis-publisher-distributed-systems">Redis Publisher: Distributed Systems<a class="headerlink" href="#redis-publisher-distributed-systems" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.redis_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">RedisPublisher</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.redis_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">RedisPublisher</span>
 
 <span class="c1"># Publish to Redis streams for distributed processing</span>
 <span class="n">redis_publisher</span> <span class="o">=</span> <span class="n">RedisPublisher</span><span class="p">({</span>
@@ -4417,7 +4417,7 @@
 - Distributed monitoring systems
 - Real-time dashboards across services</p>
 <h3 id="kafka-publisher-enterprise-event-streaming">Kafka Publisher: Enterprise Event Streaming<a class="headerlink" href="#kafka-publisher-enterprise-event-streaming" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.kafka_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">KafkaPublisher</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.kafka_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">KafkaPublisher</span>
 
 <span class="c1"># Enterprise-grade event streaming</span>
 <span class="n">kafka_publisher</span> <span class="o">=</span> <span class="n">KafkaPublisher</span><span class="p">({</span>
@@ -4433,7 +4433,7 @@
 - Complex event processing pipelines
 - Integration with analytics platforms</p>
 <h3 id="rabbitmq-publisher-flexible-messaging">RabbitMQ Publisher: Flexible Messaging<a class="headerlink" href="#rabbitmq-publisher-flexible-messaging" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.rabbitmq_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">RabbitMQPublisher</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.rabbitmq_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">RabbitMQPublisher</span>
 
 <span class="c1"># Flexible messaging with routing</span>
 <span class="n">rabbitmq_publisher</span> <span class="o">=</span> <span class="n">RabbitMQPublisher</span><span class="p">({</span>
@@ -4452,7 +4452,8 @@
 <p>The publisher system enables powerful event processing patterns:</p>
 <h3 id="real-time-monitoring-dashboard">Real-time Monitoring Dashboard<a class="headerlink" href="#real-time-monitoring-dashboard" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.redis_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">RedisPublisher</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.redis_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">RedisPublisher</span>
+
 
 <span class="k">class</span><span class="w"> </span><span class="nc">AgentMonitor</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -4617,8 +4618,8 @@
 </code></pre></div>
 <h2 id="integration-with-agent-graphs">Integration with Agent Graphs<a class="headerlink" href="#integration-with-agent-graphs" title="Permanent link">&para;</a></h2>
 <p>Publishers integrate seamlessly with your graph construction, providing consistent observability across all execution patterns:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.console_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.console_publisher</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConsolePublisher</span>
 
 <span class="c1"># Create your publisher</span>
 <span class="n">publisher</span> <span class="o">=</span> <span class="n">ConsolePublisher</span><span class="p">({</span><span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="s2">&quot;indent&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
@@ -4644,8 +4645,8 @@
 
 <span class="c1"># Execute with full observability</span>
 <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">compiled_graph</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span>
-    <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">user_message</span><span class="p">]},</span>
-    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="s2">&quot;user_123&quot;</span><span class="p">,</span> <span class="s2">&quot;session_id&quot;</span><span class="p">:</span> <span class="s2">&quot;session_456&quot;</span><span class="p">}</span>
+        <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">user_message</span><span class="p">]},</span>
+        <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="s2">&quot;user_123&quot;</span><span class="p">,</span> <span class="s2">&quot;session_id&quot;</span><span class="p">:</span> <span class="s2">&quot;session_456&quot;</span><span class="p">}</span>
 <span class="p">):</span>
     <span class="c1"># Both the chunks and the published events provide insight</span>
     <span class="c1"># Chunks show what the user sees</span>
@@ -4655,8 +4656,9 @@
 </code></pre></div>
 <h2 id="advanced-event-customization">Advanced Event Customization<a class="headerlink" href="#advanced-event-customization" title="Permanent link">&para;</a></h2>
 <p>You can extend the event system with custom metadata and routing:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventModel</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.publisher.publish</span><span class="w"> </span><span class="kn">import</span> <span class="n">publish_event</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.publisher.publish</span><span class="w"> </span><span class="kn">import</span> <span class="n">publish_event</span>
+
 
 <span class="c1"># Custom event generation</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">custom_node_with_events</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>

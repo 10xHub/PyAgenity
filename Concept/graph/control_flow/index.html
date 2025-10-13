@@ -167,7 +167,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
       </div>
@@ -302,7 +302,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
     </div>
@@ -4127,7 +4127,8 @@ runtime to jump. This page explains edges, conditional routing, recursion limits
 <p>The runtime tracks current node name in <code>execution_meta.current_node</code> inside <code>AgentState</code>.</p>
 <hr />
 <h2 id="conditional-edges">Conditional Edges<a class="headerlink" href="#conditional-edges" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">classify</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">last</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">context</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
@@ -4136,6 +4137,7 @@ runtime to jump. This page explains edges, conditional routing, recursion limits
     <span class="k">if</span> <span class="s2">&quot;bye&quot;</span> <span class="ow">in</span> <span class="n">last</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">END</span>
     <span class="k">return</span> <span class="s2">&quot;RESPOND&quot;</span>
+
 
 <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;CLASSIFY&quot;</span><span class="p">,</span> <span class="n">classify</span><span class="p">)</span>
 <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;RESPOND&quot;</span><span class="p">,</span> <span class="n">respond</span><span class="p">)</span>
@@ -4206,13 +4208,13 @@ node execution the counter increments; exceeding the limit raises a <code>GraphR
 </tbody>
 </table>
 <h3 id="basic-interrupt-example">Basic Interrupt Example<a class="headerlink" href="#basic-interrupt-example" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCheckpointer</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCheckpointer</span>
 
 <span class="c1"># Compile with interrupt points</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
     <span class="n">checkpointer</span><span class="o">=</span><span class="n">InMemoryCheckpointer</span><span class="p">(),</span>  <span class="c1"># Required for resuming</span>
-    <span class="n">interrupt_before</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;EXECUTE_TOOL&quot;</span><span class="p">],</span>    <span class="c1"># Pause before tool execution for approval</span>
-    <span class="n">interrupt_after</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ANALYZE&quot;</span><span class="p">]</span>           <span class="c1"># Pause after analysis for inspection</span>
+    <span class="n">interrupt_before</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;EXECUTE_TOOL&quot;</span><span class="p">],</span>  <span class="c1"># Pause before tool execution for approval</span>
+    <span class="n">interrupt_after</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ANALYZE&quot;</span><span class="p">]</span>  <span class="c1"># Pause after analysis for inspection</span>
 <span class="p">)</span>
 
 <span class="c1"># Initial execution (will pause at interrupt point)</span>

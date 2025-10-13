@@ -167,7 +167,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
       </div>
@@ -302,7 +302,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    10xhub/taf
+    10xhub/agentflow
   </div>
 </a>
     </div>
@@ -4132,8 +4132,8 @@ Like accumulated wisdom and learned facts, this stores insights, preferences, an
 <p>Let's explore how each layer works in practice.</p>
 <h2 id="layer-1-working-memory-the-agents-active-thoughts">Layer 1: Working Memory - The Agent's Active Thoughts<a class="headerlink" href="#layer-1-working-memory-the-agents-active-thoughts" title="Permanent link">&para;</a></h2>
 <p>Working memory in 10xScale Agentflow is embodied by the <code>AgentState</code>, which holds the current conversation context as a living, breathing entity.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgentState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Message</span>
 
 <span class="c1"># The agent&#39;s working memory</span>
 <span class="n">state</span> <span class="o">=</span> <span class="n">AgentState</span><span class="p">()</span>
@@ -4157,7 +4157,8 @@ Like accumulated wisdom and learned facts, this stores insights, preferences, an
 <h3 id="the-context-management-challenge">The Context Management Challenge<a class="headerlink" href="#the-context-management-challenge" title="Permanent link">&para;</a></h3>
 <p>A critical challenge emerges: <strong>context windows have limits</strong>. As conversations grow, you need strategies to maintain relevance without losing important information. This is where <strong>context management</strong> becomes crucial:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Context managers handle the &quot;forgetting&quot; process</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">taf.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseContextManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseContextManager</span>
+
 
 <span class="k">class</span><span class="w"> </span><span class="nc">SummaryContextManager</span><span class="p">(</span><span class="n">BaseContextManager</span><span class="p">):</span>
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">atrim_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
@@ -4176,7 +4177,7 @@ Like accumulated wisdom and learned facts, this stores insights, preferences, an
 - What you need to remember to continue a conversation effectively (working memory)
 - What you might want to review later, debug, or show in a user interface (session memory)</p>
 <p>Session memory serves <strong>persistence, auditability, and user experience</strong> rather than immediate decision-making.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">PgCheckpointer</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.checkpointer</span><span class="w"> </span><span class="kn">import</span> <span class="n">PgCheckpointer</span>
 
 <span class="c1"># Session memory persists the full interaction history</span>
 <span class="n">checkpointer</span> <span class="o">=</span> <span class="n">PgCheckpointer</span><span class="p">(</span><span class="n">postgres_dsn</span><span class="o">=</span><span class="s2">&quot;postgresql://...&quot;</span><span class="p">)</span>
@@ -4202,7 +4203,7 @@ Like accumulated wisdom and learned facts, this stores insights, preferences, an
 <p>Knowledge memory transcends individual conversations. It's where agents develop <strong>persistent understanding</strong>, store <strong>user preferences</strong>, and build <strong>contextual intelligence</strong> that improves over time.</p>
 <h3 id="beyond-conversation-boundaries">Beyond Conversation Boundaries<a class="headerlink" href="#beyond-conversation-boundaries" title="Permanent link">&para;</a></h3>
 <p>Unlike working memory (single conversation) and session memory (conversation history), knowledge memory operates across <strong>multiple conversations, users, and time periods</strong>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">taf.store</span><span class="w"> </span><span class="kn">import</span> <span class="n">QdrantStore</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">agentflow.store</span><span class="w"> </span><span class="kn">import</span> <span class="n">QdrantStore</span>
 
 <span class="c1"># Knowledge that persists across conversations</span>
 <span class="n">store</span> <span class="o">=</span> <span class="n">QdrantStore</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;user_preferences&quot;</span><span class="p">)</span>
